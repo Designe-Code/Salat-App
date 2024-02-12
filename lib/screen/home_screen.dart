@@ -1,9 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/screen/widgets/custom_icon_button.dart';
 import 'package:salati/screen/widgets/home_time_container.dart';
 import 'package:salati/screen/widgets/location.dart';
 import 'package:salati/screen/widgets/next_adan.dart';
+import 'package:salati/screen/widgets/prayer_times.dart';
 
 class HomeScreen extends StatelessWidget{
   const HomeScreen({super.key});
@@ -123,29 +126,11 @@ class HomeScreen extends StatelessWidget{
                       ),
                     ],
                   ),
-                  child: const HomeTimeContainer(
-                    time: '12:27',
-                    date: 'Tuesday 23 Jumada II 1445',
-                    icon: 'assets/images/asr.png'
+                  child: HomeTimeContainer(
                   )
                 ),
                 const SizedBox(height: 10),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.92,
-                  height: MediaQuery.of(context).size.height * 0.31,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.background,
-                    borderRadius: const BorderRadius.all(Radius.circular(20)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.05),
-                        spreadRadius: 0,
-                        blurRadius: 4,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                ),
+                const PrayersTimes(),
               ],
             ),
           ),

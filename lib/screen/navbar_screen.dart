@@ -78,8 +78,8 @@ class _NavBarScreenState extends State<NavBarScreen>{
     return Tab(
       icon: _selectedIndex == index
         ? Container(
-            width: 40,
-            height: 40,
+            width: 45,
+            height: 45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: Theme.of(context).colorScheme.primary
@@ -87,8 +87,8 @@ class _NavBarScreenState extends State<NavBarScreen>{
             child: Center(child: activeIcon)
           )
         : Container(
-            width: 40,
-            height: 40,
+            width: 45,
+            height: 45,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: Theme.of(context).colorScheme.background
