@@ -129,10 +129,10 @@ class _HomeTimeContainerState extends State<HomeTimeContainer> {
                   width: 120,
                   height: MediaQuery.of(context).size.height * 0.16,
                   decoration: BoxDecoration(
-                    color: getContainerColor(context).withOpacity(0.7),
+                    color: getContainerColor(context).withOpacity(0.3),
                     shape: BoxShape.circle,
                   ),
-                  child: Center(child: Image(image: AssetImage(getIconPath()),width: 55,)),
+                  child: Center(child: Image(image: AssetImage(getIconPath()),width: 70,)),
                 ),
               ],
             ),

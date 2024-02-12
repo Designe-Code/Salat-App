@@ -19,19 +19,19 @@ class CustomIconButton extends StatelessWidget{
     return Column(
       children: [
         SizedBox(
-          width: 46,
-          height: 46,
+          width: 50,
+          height: 50,
           child: FloatingActionButton(
             heroTag: heroTag,
             backgroundColor: Theme.of(context).colorScheme.background,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15)
+              borderRadius: BorderRadius.circular(12)
             ),
             onPressed: onPressed,
             child: Image(image: AssetImage(icon), width: 35, height: 35),
           ),
         ),
-        const SizedBox(height: 5),
+        const SizedBox(height: 8),
         Text(iconlabel, style: Theme.of(context).textTheme.bodySmall)
       ],
     );
