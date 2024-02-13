@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:salati/Controller/Times.dart';
+import 'package:salati/controllers/times.dart';
 import 'package:salati/helper/constant.dart';
 
 class HomeTimeContainer extends StatefulWidget {

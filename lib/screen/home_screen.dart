@@ -2,14 +2,47 @@
 
 import 'package:flutter/material.dart';
 import 'package:salati/helper/constant.dart';
+import 'package:salati/controllers/prayer_controller.dart';
+import 'package:salati/models/prayer_data.dart';
 import 'package:salati/screen/widgets/custom_icon_button.dart';
 import 'package:salati/screen/widgets/home_time_container.dart';
-import 'package:salati/screen/widgets/location.dart';
+import 'package:salati/screen/widgets/custom_location.dart';
 import 'package:salati/screen/widgets/next_adan.dart';
-import 'package:salati/screen/widgets/prayer_times.dart';
+import 'package:salati/screen/widgets/prayer_list_item.dart';
 
-class HomeScreen extends StatelessWidget{
-  const HomeScreen({super.key});
+class HomeScreen extends StatefulWidget{
+  const HomeScreen({super.key, required this.controller});
+  
+  final PrayerController? controller;
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen>{
+  int _activePrayerIndex = 0;
+  int _activeBellChange = 0;
+  late Future<Timings>? futurePrayerTiming;
+
+  @override
+  void initState() {
+    super.initState();
+    futurePrayerTiming = widget.controller!.getPrierTimings();
+    futurePrayerTiming?.then((timings) {
+      widget.controller?.setPrayerTime(
+        timings.fajr,
+        timings.sunrise,
+        timings.dhuhr,
+        timings.asr,
+        timings.maghrib,
+        timings.isha
+      );
+      setState(() {
+        _activePrayerIndex = widget.controller?.getActiveIndex(timings) ?? 0;
+        _activeBellChange = 0;
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +99,7 @@ class HomeScreen extends StatelessWidget{
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             NextAdan(nextAdan: 'Duhr', time: '01:38 PM'),
-                            Location(location: 'Ouarzazate')
+                            CustomLocation(location: 'Ouarzazate')
                           ],
                         ),
                       ),
@@ -130,7 +163,46 @@ class HomeScreen extends StatelessWidget{
                   )
                 ),
                 const SizedBox(height: 10),
-                const PrayersTimes(),
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.92,
+                  height: MediaQuery.of(context).size.height * 0.31,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.background,
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.05),
+                        spreadRadius: 0,
+                        blurRadius: 4,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: ListView.builder(
+                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    itemCount: widget.controller?.prayers.length,
+                    itemBuilder: (context, index) {
+                      return PrayerListItem(
+                        index: index,
+                        activeIndex: _activePrayerIndex,
+                        icon: widget.controller?.prayers[index].icon ?? '',
+                        adan: widget.controller?.prayers[index].adan ?? '',
+                        time: widget.controller?.prayers[index].time ?? '',
+                        bell: widget.controller?.prayers[index].bell ?? '',
+                        onPressedBell: () {
+                          if (widget.controller?.prayers[index].bell == activeBell) {
+                            widget.controller?.prayers[index].bell = inactiveBell;
+                          } else {
+                            widget.controller?.prayers[index].bell = activeBell;
+                          }
+                          setState(() {
+                            _activeBellChange = _activeBellChange + 1;
+                          });
+                        },
+                      );
+                    }
+                  ),
+                ),
               ],
             ),
           ),
