@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salati/controllers/prayer_controller.dart';
+import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/screen/home_screen.dart';
 import 'package:salati/screen/tasbih.dart';
@@ -17,6 +18,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   @override
   Widget build(BuildContext context) {
     PrayerController prayerController = PrayerController();
+     TasbihController tasbihController = TasbihController();
 
     return DefaultTabController(
       length: 4,
@@ -91,7 +93,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
               children: [
                 HomeScreen(controller: prayerController),
                 const Text('ok'),
-                const Tasbih(),
+                 Tasbih(controller: tasbihController,),
                 const Text('ok'),
               ],
             ));

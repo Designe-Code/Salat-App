@@ -19,13 +19,11 @@ class TasbihController {
     ),
   ];
 
-  int currentTasbihIndex = 0;
-
-  TasbihData getCurrentTasbih() {
+  TasbihData getCurrentTasbih(int currentTasbihIndex) {
     return tasbihs[currentTasbihIndex];
   }
 
-  void moveToNextTasbih() {
+  void moveToNextTasbih(int currentTasbihIndex) {
     currentTasbihIndex = (currentTasbihIndex + 1) % tasbihs.length;
   }
 }

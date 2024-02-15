@@ -1,35 +1,20 @@
 import 'package:flutter/material.dart';
 
 class Tasbihnumbers extends StatefulWidget {
-  const Tasbihnumbers({Key? key}) : super(key: key);
+  const Tasbihnumbers(
+      {super.key,
+      required this.count,
+      required this.decrement,
+      required this.reset});
+  final int count;
+  final Function() decrement;
+  final Function() reset;
 
   @override
-  _TasbihnumbersState createState() => _TasbihnumbersState();
+  State<Tasbihnumbers> createState() => _TasbihnumbersState();
 }
 
 class _TasbihnumbersState extends State<Tasbihnumbers> {
-  int count = 0;
-
-  void increment() {
-    setState(() {
-      count = (count + 1) % 34;
-    });
-  }
-
-  void reset() {
-    setState(() {
-      count = 0;
-    });
-  }
-
-  void decrement() {
-    setState(() {
-      if (count > 0) {
-        count--;
-      }
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -38,7 +23,7 @@ class _TasbihnumbersState extends State<Tasbihnumbers> {
           TextSpan(
             children: [
               TextSpan(
-                text: count.toString(),
+                text: widget.count.toString(),
                 style: const TextStyle(
                   color: Color(0xFF06D6A0),
                   fontSize: 96,
@@ -69,9 +54,7 @@ class _TasbihnumbersState extends State<Tasbihnumbers> {
             children: [
               InkWell(
                 borderRadius: BorderRadius.circular(20),
-                onTap: () {
-                  increment();
-                },
+                onTap: widget.decrement,
                 child: Container(
                   width: 40,
                   height: 40,
@@ -87,9 +70,7 @@ class _TasbihnumbersState extends State<Tasbihnumbers> {
               ),
               InkWell(
                 borderRadius: BorderRadius.circular(20),
-                onTap: () {
-                  reset();
-                },
+                onTap: widget.reset,
                 child: Container(
                   width: 40,
                   height: 40,
@@ -106,7 +87,7 @@ class _TasbihnumbersState extends State<Tasbihnumbers> {
               InkWell(
                 borderRadius: BorderRadius.circular(20),
                 onTap: () {
-                  decrement();
+                  widget.decrement();
                 },
                 child: Container(
                   width: 40,

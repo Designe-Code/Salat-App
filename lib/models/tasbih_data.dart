@@ -1,7 +1,7 @@
 class TasbihData {
- String tasbihArab;
- String tasbihArabEng;
- String tasbihEnglish;
+ final String tasbihArab;
+ final String tasbihArabEng;
+ final String tasbihEnglish;
 
   TasbihData(
       {required this.tasbihArab,

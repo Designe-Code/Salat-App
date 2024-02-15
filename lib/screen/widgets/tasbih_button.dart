@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class TasbihButton extends StatefulWidget {
-  const TasbihButton({Key? key}) : super(key: key);
+  const TasbihButton({Key? key, required this.increment}) : super(key: key);
+    final Function() increment ;
 
   @override
   State<TasbihButton> createState() => _TasbihButtonState();
@@ -14,12 +15,13 @@ class _TasbihButtonState extends State<TasbihButton>
 
   bool isBouncing = false;
 
+
   @override
   void initState() {
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 500),
+      duration: const Duration(milliseconds: 500),
     );
 
     _positionAnimation = Tween(begin: 0.0, end: 180.0).animate(
@@ -66,6 +68,7 @@ class _TasbihButtonState extends State<TasbihButton>
             } else {
               _controller.reverse();
             }
+            widget.increment();
           });
         },
         child: Stack(
