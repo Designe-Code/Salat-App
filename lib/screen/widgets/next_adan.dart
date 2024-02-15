@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class NextAdan extends StatelessWidget{
-  const NextAdan({super.key, required this.nextAdan, required this.time});
+  NextAdan({super.key, required this.nextAdan, required this.time});
 
-  final String nextAdan;
-  final String time;
+  String nextAdan;
+  String time;
 
   @override
   Widget build(BuildContext context) {
