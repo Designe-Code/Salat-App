@@ -22,6 +22,8 @@ class HomeScreen extends StatefulWidget{
 class _HomeScreenState extends State<HomeScreen>{
   int _activePrayerIndex = 0;
   int _activeBellChange = 0;
+  String _time = '';
+  String _adhanName = '';
   late Future<Timings>? futurePrayerTiming;
 
   @override
@@ -40,6 +42,8 @@ class _HomeScreenState extends State<HomeScreen>{
       setState(() {
         _activePrayerIndex = widget.controller?.getActiveIndex(timings) ?? 0;
         _activeBellChange = 0;
+        _time = widget.controller?.getNextPrayer(_activePrayerIndex, timings)['time'] ?? '';
+        _adhanName = widget.controller?.getNextPrayer(_activePrayerIndex, timings)['name'] ?? '';
       });
     });
   }
@@ -95,10 +99,10 @@ class _HomeScreenState extends State<HomeScreen>{
                     children: [
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.65,
-                        child: const Row(
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            NextAdan(nextAdan: 'Duhr', time: '01:38 PM'),
+                            NextAdan(nextAdan: _adhanName, time: _time),
                             CustomLocation(location: 'Ouarzazate')
                           ],
                         ),

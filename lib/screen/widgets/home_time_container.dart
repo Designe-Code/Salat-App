@@ -27,7 +27,7 @@ class _HomeTimeContainerState extends State<HomeTimeContainer> {
       hijriTime = TimeManager.getHijriTime();
     });
 
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       if (mounted) {
         _updateTime();
       }

@@ -1,10 +1,12 @@
 import 'dart:convert';
 
+import 'package:intl/intl.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:salati/helper/constant.dart';
 import 'package:salati/models/prayer.dart';
 import 'package:salati/models/prayer_data.dart';
-import 'package:intl/intl.dart';
-import 'package:http/http.dart' as http;
+
 
 class PrayerController {
   final List<Prayer> prayers = [
@@ -18,7 +20,7 @@ class PrayerController {
     Prayer(
       index: 1,
       icon: smallSunrise,
-      adan: 'Sunrize',
+      adan: 'Sunrise',
       time: '',
       bell: activeBell
     ),
@@ -77,15 +79,54 @@ class PrayerController {
     return formattedDate;
   }
 
+  Map<String, String> getNextPrayer(int activeIndex, Timings timings) {
+    if (activeIndex == 0) {
+      return {
+        'name' : 'Fajr',
+        'time' : timings.fajr
+      };
+    }
+     if (activeIndex == 1) {
+      return {
+        'name' : 'Sunrise',
+        'time' : timings.sunrise
+      };
+    }
+    if (activeIndex == 2) {
+      return {
+        'name' : 'Dhuhr',
+        'time' : timings.dhuhr
+      };
+    }
+    if (activeIndex == 3) {
+      return {
+        'name' : 'Asr',
+        'time' : timings.asr
+      };
+    }
+    if (activeIndex == 4) {
+      return {
+        'name' : 'Maghrib',
+        'time' : timings.maghrib
+      };
+    }
+   return {
+     'name' : 'Ishaa',
+        'time' : timings.isha
+   };
+
+
+  }
+
   int getActiveIndex(Timings? timings) {
     DateTime now = DateTime.now();
     String currentTime = DateFormat.jm().format(now);
-    if (_getTimeStamp(currentTime) < _getTimeStamp( _formatTime(timings?.sunrise))) return 0;
-    if (_getTimeStamp(currentTime) < _getTimeStamp( _formatTime(timings?.dhuhr))) return 1;
-    if (_getTimeStamp(currentTime) < _getTimeStamp( _formatTime(timings?.asr))) return 2;
-    if (_getTimeStamp(currentTime) < _getTimeStamp( _formatTime(timings?.maghrib))) return 3;
-    if (_getTimeStamp(currentTime) < _getTimeStamp( _formatTime(timings?.isha))) return 4;
-    return 5;
+    if (_getTimeStamp(currentTime) > _getTimeStamp( _formatTime(timings?.isha))) return 0;
+    if (_getTimeStamp(currentTime) > _getTimeStamp( _formatTime(timings?.maghrib))) return 5;
+    if (_getTimeStamp(currentTime) > _getTimeStamp( _formatTime(timings?.asr))) return 4;
+    if (_getTimeStamp(currentTime) > _getTimeStamp( _formatTime(timings?.dhuhr))) return 3;
+    if (_getTimeStamp(currentTime) > _getTimeStamp( _formatTime(timings?.sunrise))) return 2;
+    return 1;
   }
 
   void setPrayerTime(fajr, sunrise, duhr, asr, maghrib, ishaa) {
