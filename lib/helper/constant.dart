@@ -25,3 +25,4 @@ const String smallMaghrib = 'assets/images/small_maghrib.png';
 const String smallIshaa = 'assets/images/small_ishaa.png';
 const String activeBell = 'assets/images/active_bell.png';
 const String inactiveBell = 'assets/images/inactive_bell.png';
+const String compass = 'assets/images/qiblacompass.png';

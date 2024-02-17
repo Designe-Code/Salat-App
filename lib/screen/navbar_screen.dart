@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:salati/controllers/prayer_controller.dart';
+import 'package:salati/controllers/qibla_controller.dart';
 import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/screen/home_screen.dart';
+import 'package:salati/screen/qibla.dart';
+import 'package:salati/screen/qiblaview.dart';
 import 'package:salati/screen/tasbih.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -19,6 +22,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
   Widget build(BuildContext context) {
     PrayerController prayerController = PrayerController();
      TasbihController tasbihController = TasbihController();
+     QiblaController qiblaController = QiblaController();
 
     return DefaultTabController(
       length: 4,
@@ -91,8 +95,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
             ),
             body: TabBarView(
               children: [
-                HomeScreen(controller: prayerController),
-                const Text('ok'),
+                HomeScreen(controller: prayerController,tasbihController: tasbihController,),
+                QbilaView(controller: qiblaController,),
                  Tasbih(controller: tasbihController,),
                 const Text('ok'),
               ],
