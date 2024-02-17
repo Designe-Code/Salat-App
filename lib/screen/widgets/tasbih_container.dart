@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:salati/controllers/tasbih_controller.dart';
-import 'package:salati/models/tasbih_data.dart';
 
 class Tasbihcontainer extends StatefulWidget {
   const Tasbihcontainer(
-      {super.key, required this.controller, required this.count, required this.increment, required this.currentTasbihIndex});
+      {super.key, required this.controller, required this.count, required this.reset, required this.currentTasbihIndex});
 
   final TasbihController controller;
   final int count;
-  final Function() increment;
+  final Function() reset;
   final int currentTasbihIndex;
 
   @override
@@ -36,17 +36,25 @@ class _TasbihcontainerState extends State<Tasbihcontainer> {
             children: [
               Text(
                 widget.controller.getCurrentTasbih(widget.currentTasbihIndex).tasbihArab,
-                style:
-                    const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: GoogleFonts.amiri(
+                  fontSize: 24,
+                  color: Theme.of(context).colorScheme.background
+                ),
               ),
               Text(
                 widget.controller.getCurrentTasbih(widget.currentTasbihIndex).tasbihArabEng,
-                style: const TextStyle(fontSize: 16),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontSize: 15,
+                  color: Theme.of(context).colorScheme.background
+                ),
               ),
               Text(
                 widget.controller.getCurrentTasbih(widget.currentTasbihIndex).tasbihEnglish,
-                style:
-                    const TextStyle(fontSize: 14, fontStyle: FontStyle.italic),
+                style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                  fontSize: 15,
+                  fontStyle: FontStyle.italic,
+                  color: Theme.of(context).colorScheme.background
+                ),
               ),
               // Text(
               //   '$count / 33',
@@ -59,7 +67,7 @@ class _TasbihcontainerState extends State<Tasbihcontainer> {
             ],
           ),
           InkWell(
-              onTap: widget.increment,
+              onTap: widget.reset,
               child: Container(
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
@@ -68,8 +76,8 @@ class _TasbihcontainerState extends State<Tasbihcontainer> {
                 ),
                 width: 40,
                 height: 40,
-                child: Center(
-                  child: Icon(Icons.restart_alt_outlined),
+                child: const Center(
+                  child: Image(image: AssetImage('assets/images/new_tasbih.png')),
                 ),
               ))
         ],

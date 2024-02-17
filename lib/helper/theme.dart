@@ -9,11 +9,16 @@ ThemeData lightTheme = ThemeData(
     secondary: const Color(0xFF23302A),
     onSecondary: const Color(0xFFFCD462),
     background: const Color(0xFFF9F9F9),
+    onBackground: Colors.white,
     brightness: Brightness.light,
   ),
   textTheme: TextTheme(
     bodySmall: GoogleFonts.poppins(
       fontSize: 12,
+      color: Colors.black
+    ),
+    bodyMedium: GoogleFonts.poppins(
+      fontSize: 20,
       color: Colors.black
     ),
     bodyLarge: GoogleFonts.poppins(

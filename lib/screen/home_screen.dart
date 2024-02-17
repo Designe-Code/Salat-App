@@ -183,7 +183,7 @@ class _HomeScreenState extends State<HomeScreen>{
                     ],
                   ),
                   child: ListView.builder(
-                    padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
                     itemCount: widget.controller?.prayers.length,
                     itemBuilder: (context, index) {
                       return PrayerListItem(

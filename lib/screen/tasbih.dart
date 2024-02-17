@@ -29,23 +29,38 @@ class _TasbihState extends State<Tasbih> {
   Widget build(BuildContext context) {
     TasbihController tasbihController = TasbihController();
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.onBackground,
       body: Center(
         child: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             mainAxisSize: MainAxisSize.max,
             children: [
-              const Text("data"),
-              Tasbihnumbers(count: count, decrement: decrement, reset: reset),
-              Tasbihcontainer(
-                controller: tasbihController,
-                count: count,
-                increment: increment,
-                currentTasbihIndex: _currentTasbihIndex,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text("Tasbih", style: Theme.of(context).textTheme.bodyMedium),
+                ],
               ),
-              TasbihButton(
-                increment: increment,
+              Tasbihnumbers(
+                count: count,
+                currentTasbih: _currentTasbihIndex,
+                decrement: decrement,
+                reset: reset
+              ),
+              Column(
+                children: [
+                  Tasbihcontainer(
+                    controller: tasbihController,
+                    count: count,
+                    reset: reset,
+                    currentTasbihIndex: _currentTasbihIndex,
+                  ),
+                  SizedBox(height: MediaQuery.of(context).size.height * 0.04),
+                  TasbihButton(
+                    increment: increment,
+                  ),
+                ],
               ),
             ],
           ),
@@ -57,23 +72,21 @@ class _TasbihState extends State<Tasbih> {
   void increment() {
     setState(() {
       lastCounter = lastCounter + 1;
-      if (lastCounter == 101) {
-        lastCounter = 0;
+      if (lastCounter < 101) {
+        count = count + 1;
+      } else {
+        lastCounter = 101;
       }
-      if (lastCounter == 33 || lastCounter == 66 || lastCounter == 100) {
-        count = 0;
+      if (lastCounter == 34 || lastCounter == 67) {
+        count = 1;
       }
       if (lastCounter < 34) {
         _currentTasbihIndex = 0;
-      } else if (lastCounter < 66) {
+      } else if (lastCounter < 67) {
         _currentTasbihIndex = 1;
-      } else if (lastCounter < 99) {
+      } else if (lastCounter < 101) {
         _currentTasbihIndex = 2;
       }
-
-      count = count + 1;
-      print(lastCounter);
-      print(_currentTasbihIndex);
     });
   }
 
@@ -87,11 +100,19 @@ class _TasbihState extends State<Tasbih> {
 
   void decrement() {
     setState(() {
-      if (count > 0) {
+      if (lastCounter > 0) {
         count--;
-        if (lastCounter > 0) {
-          lastCounter--;
-        }
+        lastCounter--;
+      }
+      if (lastCounter == 33 || lastCounter == 66) {
+        count = 33;
+      }
+      if (lastCounter < 34) {
+        _currentTasbihIndex = 0;
+      } else if (lastCounter < 67) {
+        _currentTasbihIndex = 1;
+      } else if (lastCounter < 101) {
+        _currentTasbihIndex = 2;
       }
     });
   }
