@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Tasbihnumbers extends StatefulWidget {
-  const Tasbihnumbers(
-      {super.key,
-      required this.count,
-      required this.decrement,
-      required this.reset});
+  const Tasbihnumbers({
+    super.key,
+    required this.count,
+    required this.currentTasbih,
+    required this.decrement,
+    required this.reset
+  });
+
   final int count;
+  final int currentTasbih;
   final Function() decrement;
   final Function() reset;
 
@@ -32,9 +36,9 @@ class _TasbihnumbersState extends State<Tasbihnumbers> {
                   height: 0,
                 ),
               ),
-              const TextSpan(
-                text: '/33',
-                style: TextStyle(
+              TextSpan(
+                text: widget.currentTasbih == 2 ? '/34' : '/33',
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 24,
                   fontFamily: 'Poppins',

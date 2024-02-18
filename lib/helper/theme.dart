@@ -16,6 +16,10 @@ ThemeData lightTheme = ThemeData(
       fontSize: 12,
       color: Colors.black
     ),
+    bodyMedium: GoogleFonts.poppins(
+      fontSize: 20,
+      color: Colors.black
+    ),
     bodyLarge: GoogleFonts.poppins(
       fontSize: 32,
       fontWeight: FontWeight.w300,

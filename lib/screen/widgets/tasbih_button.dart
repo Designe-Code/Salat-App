@@ -13,9 +13,6 @@ class _TasbihButtonState extends State<TasbihButton>
   late AnimationController _controller;
   late Animation<double> _positionAnimation;
 
-  bool isBouncing = false;
-
-
   @override
   void initState() {
     super.initState();
@@ -24,7 +21,7 @@ class _TasbihButtonState extends State<TasbihButton>
       duration: const Duration(milliseconds: 500),
     );
 
-    _positionAnimation = Tween(begin: 0.0, end: 180.0).animate(
+    _positionAnimation = Tween(begin: 0.0, end: 300.0).animate(
       CurvedAnimation(
         parent: _controller,
         curve: Curves.easeInOutBack, // Adjust the curve as needed
@@ -62,12 +59,13 @@ class _TasbihButtonState extends State<TasbihButton>
       child: GestureDetector(
         onTap: () {
           setState(() {
-            isBouncing = !isBouncing;
-            if (isBouncing) {
-              _controller.forward();
-            } else {
-              _controller.reverse();
-            }
+            _controller.forward();
+            Future.delayed(const Duration(milliseconds: 500), () {
+              _controller.animateTo(-10, duration: const Duration(seconds: 0));
+            });
+            Future.delayed(const Duration(milliseconds: 500), () {
+              _controller.animateTo(0);
+            });
             widget.increment();
           });
         },
@@ -88,7 +86,7 @@ class _TasbihButtonState extends State<TasbihButton>
                   gradient: LinearGradient(
                     begin: Alignment(0.71, -0.71),
                     end: Alignment(-0.71, 0.71),
-                    colors: [Color(0xFF38E9BB), Color(0xFF30FDC8)],
+                    colors: [Color(0xFF06D6A0), Color(0xFF30FDC8)],
                   ),
                   shape: CircleBorder(),
                   shadows: [

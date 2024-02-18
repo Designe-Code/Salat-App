@@ -186,31 +186,29 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   child: ListView.builder(
-                      padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                      itemCount: widget.controller?.prayers.length,
-                      itemBuilder: (context, index) {
-                        return PrayerListItem(
-                          index: index,
-                          activeIndex: _activePrayerIndex,
-                          icon: widget.controller?.prayers[index].icon ?? '',
-                          adan: widget.controller?.prayers[index].adan ?? '',
-                          time: widget.controller?.prayers[index].time ?? '',
-                          bell: widget.controller?.prayers[index].bell ?? '',
-                          onPressedBell: () {
-                            if (widget.controller?.prayers[index].bell ==
-                                activeBell) {
-                              widget.controller?.prayers[index].bell =
-                                  inactiveBell;
-                            } else {
-                              widget.controller?.prayers[index].bell =
-                                  activeBell;
-                            }
-                            setState(() {
-                              _activeBellChange = _activeBellChange + 1;
-                            });
-                          },
-                        );
-                      }),
+                    padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+                    itemCount: widget.controller?.prayers.length,
+                    itemBuilder: (context, index) {
+                      return PrayerListItem(
+                        index: index,
+                        activeIndex: _activePrayerIndex,
+                        icon: widget.controller?.prayers[index].icon ?? '',
+                        adan: widget.controller?.prayers[index].adan ?? '',
+                        time: widget.controller?.prayers[index].time ?? '',
+                        bell: widget.controller?.prayers[index].bell ?? '',
+                        onPressedBell: () {
+                          if (widget.controller?.prayers[index].bell == activeBell) {
+                            widget.controller?.prayers[index].bell = inactiveBell;
+                          } else {
+                            widget.controller?.prayers[index].bell = activeBell;
+                          }
+                          setState(() {
+                            _activeBellChange = _activeBellChange + 1;
+                          });
+                        },
+                      );
+                    }
+                  ),
                 ),
               ],
             ),
