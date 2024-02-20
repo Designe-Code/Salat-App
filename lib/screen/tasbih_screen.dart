@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/models/tasbih_data.dart';
-import 'package:salati/screen/widgets/tasbih_button.dart';
-import 'package:salati/screen/widgets/tasbih_container.dart';
-import 'package:salati/screen/widgets/tasbih_text.dart';
+import 'package:salati/screen/widgets/tasbih/tasbih_button.dart';
+import 'package:salati/screen/widgets/tasbih/tasbih_container.dart';
+import 'package:salati/screen/widgets/tasbih/tasbih_text.dart';
 
-class Tasbih extends StatefulWidget {
+class TasbihScreen extends StatefulWidget {
   final TasbihController controller;
-  const Tasbih({super.key, required this.controller});
+  const TasbihScreen({super.key, required this.controller});
 
   @override
-  State<Tasbih> createState() => _TasbihState();
+  State<TasbihScreen> createState() => _TasbihState();
 }
 
-class _TasbihState extends State<Tasbih> {
+class _TasbihState extends State<TasbihScreen> {
   late TasbihData currentTasbih;
   int count = 0;
   int lastCounter = 0;
@@ -29,7 +29,7 @@ class _TasbihState extends State<Tasbih> {
   Widget build(BuildContext context) {
     TasbihController tasbihController = TasbihController();
     return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.onBackground,
+      backgroundColor: Theme.of(context).colorScheme.background,
       body: Center(
         child: SafeArea(
           child: Column(

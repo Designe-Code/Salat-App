@@ -3,15 +3,19 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/helper/theme.dart';
+import 'package:salati/providers/prayer_provider.dart';
 import 'package:salati/providers/splash_provider.dart';
 import 'package:salati/screen/spalsh_screen.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => SplashProvider(),
-      child:  const MyApp(),
-    ),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => SplashProvider()),
+        ChangeNotifierProvider(create: (context) => PrayerProvider()),
+      ],
+      child: const MyApp(),
+    )
   );
 }
 
@@ -27,7 +31,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: appName,
       theme: lightTheme,
-      home:  const SplashScreen(),
+      home: const SplashScreen(),
     );
   }
 }

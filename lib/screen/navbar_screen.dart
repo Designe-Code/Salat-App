@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:salati/controllers/prayer_controller.dart';
 import 'package:salati/controllers/qibla_controller.dart';
 import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/screen/home_screen.dart';
-import 'package:salati/screen/qibla.dart';
-import 'package:salati/screen/qiblaview.dart';
-import 'package:salati/screen/tasbih.dart';
+import 'package:salati/screen/qibla_screen.dart';
+import 'package:salati/screen/tasbih_screen.dart';
 
 class NavBarScreen extends StatefulWidget {
   const NavBarScreen({super.key});
@@ -20,7 +18,6 @@ class _NavBarScreenState extends State<NavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    PrayerController prayerController = PrayerController();
      TasbihController tasbihController = TasbihController();
      QiblaController qiblaController = QiblaController();
 
@@ -82,7 +79,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
                             width: 28,
                             height: 28)),
                     iconlabel: 'Tasbih',
-                    index: 2),
+                    index: 2
+                  ),
                 _buildTab(
                     activeIcon: Icon(Icons.menu,
                         size: 28,
@@ -95,9 +93,9 @@ class _NavBarScreenState extends State<NavBarScreen> {
             ),
             body: TabBarView(
               children: [
-                HomeScreen(controller: prayerController,tasbihController: tasbihController,),
+                HomeScreen(tasbihController: tasbihController),
                 QbilaView(controller: qiblaController,),
-                 Tasbih(controller: tasbihController,),
+                TasbihScreen(controller: tasbihController,),
                 const Text('ok'),
               ],
             ));

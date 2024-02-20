@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TasbihButton extends StatefulWidget {
-  const TasbihButton({Key? key, required this.increment}) : super(key: key);
-    final Function() increment ;
+  const TasbihButton({super.key, required this.increment});
+  
+  final Function() increment;
 
   @override
   State<TasbihButton> createState() => _TasbihButtonState();

@@ -9,6 +9,7 @@ ThemeData lightTheme = ThemeData(
     secondary: const Color(0xFF23302A),
     onSecondary: const Color(0xFFFCD462),
     background: const Color(0xFFFFFFFF),
+    onBackground: const Color(0xFFF9F9F9),
     brightness: Brightness.light,
   ),
   textTheme: TextTheme(
