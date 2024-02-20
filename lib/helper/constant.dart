@@ -1,8 +1,16 @@
 const String appName = 'Salati';
 
+//api
+const String prayerByCityApiUrl = 'http://api.aladhan.com/v1/timingsByCity';
+const String qiblaApiUrl = 'http://api.aladhan.com/v1/qibla';
+
 //images
 const String logo = 'assets/images/logo.png';
 const String splashScreenBackground = 'assets/images/splash_screen_background.png';
+const String mosque = 'assets/images/mosque.png';
+const String quran = 'assets/images/quran.png';
+const String adkar = 'assets/images/adkar.png';
+const String tasbih = 'assets/images/tasbih.png';
 const String homeIconNavBar = 'assets/images/home_navbar.png';
 const String homeIconActiveNavBar = 'assets/images/home_active_navbar.png';
 const String qiblaNavBar = 'assets/images/qibla.png';

@@ -23,7 +23,7 @@ class PrayerListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height:40,
+      height: 40,
       child: Container(
         decoration: BoxDecoration(
           color: index == activeIndex ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.background,
@@ -43,7 +43,8 @@ class PrayerListItem extends StatelessWidget {
               child: IconButton(
                 icon: Image(image: AssetImage(bell)),
                 onPressed: onPressedBell,
-              )),
+              )
+            ),
           ],
         ),
       ),
