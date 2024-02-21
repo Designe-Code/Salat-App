@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/helper/theme.dart';
 import 'package:salati/providers/prayer_provider.dart';
+import 'package:salati/providers/quran_provider.dart';
 import 'package:salati/providers/splash_provider.dart';
 import 'package:salati/screen/spalsh_screen.dart';
 
@@ -13,6 +14,7 @@ void main() {
       providers: [
         ChangeNotifierProvider(create: (context) => SplashProvider()),
         ChangeNotifierProvider(create: (context) => PrayerProvider()),
+        ChangeNotifierProvider(create: (context) => QuranProvider()),
       ],
       child: const MyApp(),
     )

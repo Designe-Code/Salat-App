@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
+import 'package:salati/helper/functions.dart';
 import 'package:salati/providers/prayer_provider.dart';
+import 'package:salati/screen/quran_screen.dart';
 import 'package:salati/screen/tasbih_screen.dart';
 import 'package:salati/screen/widgets/home/widgets/custom_icon_button.dart';
 import 'package:salati/screen/widgets/home/widgets/custom_location.dart';
@@ -72,7 +74,9 @@ class HomeNavBarContainer extends StatelessWidget {
                   heroTag: 'quran_button',
                   icon: quran,
                   iconlabel: 'Quran',
-                  onPressed: () {}
+                  onPressed: () {
+                    navigateTo(context, const QuranScreen());
+                  }
                 ),
                 CustomIconButton(
                   heroTag: 'adkar_button',
