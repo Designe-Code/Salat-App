@@ -31,13 +31,13 @@ class _NavBarScreenState extends State<NavBarScreen> {
           });
         });
         return Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
             bottomNavigationBar: TabBar(
               labelPadding: const EdgeInsets.all(10),
               labelColor: Theme.of(context).colorScheme.primary,
               labelStyle: Theme.of(context).textTheme.bodySmall,
               unselectedLabelColor: Colors.black,
-              indicator:
-                  BoxDecoration(border: Border.all(color: Colors.transparent)),
+              indicator: BoxDecoration(border: Border.all(color: Colors.transparent)),
               tabs: [
                 _buildTab(
                     activeIcon: const Image(
@@ -92,6 +92,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
               ],
             ),
             body: TabBarView(
+              physics: const NeverScrollableScrollPhysics(),
               children: [
                 HomeScreen(tasbihController: tasbihController),
                 QbilaView(controller: qiblaController,),

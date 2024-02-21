@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:hijri/hijri_calendar.dart';
 
@@ -31,4 +32,15 @@ String getHijriTime() {
   HijriCalendar hijriCalendar = HijriCalendar.now();
   String dayName = DateFormat.EEEE().format(DateTime.now());
   return '$dayName ${hijriCalendar.hDay} ${hijriCalendar.getLongMonthName()} ${hijriCalendar.hYear}';
+}
+
+void navigateTo(BuildContext context, Widget screen) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => screen)
+  );
+}
+
+void goBack(BuildContext context) {
+  Navigator.pop(context);
 }
