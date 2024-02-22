@@ -25,7 +25,7 @@ class _TasbihButtonState extends State<TasbihButton>
     _positionAnimation = Tween(begin: 0.0, end: 300.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Curves.easeInOutBack, // Adjust the curve as needed
+        curve: Curves.easeInOutBack,
       ),
     );
   }
