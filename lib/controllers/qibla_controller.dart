@@ -8,14 +8,15 @@ class QiblaController {
   Position? currentPosition;
   double? qiblaDirection;
 
-  Future<void> _requestLocationPermissions() async {
+  Future<bool> _requestLocationPermissions() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        return;
+        return false;
       }
     }
+    return true;
   }
 
   Future<Location> _getQiblaLocation(Position devicePosition) async {
@@ -23,8 +24,12 @@ class QiblaController {
   }
 
   Future<Position?> getCurrentLocation() async {
-    await _requestLocationPermissions();
-    currentPosition = await Geolocator.getCurrentPosition();
+    await _requestLocationPermissions().then((isPermission) async => {
+          if (isPermission == false)
+            {currentPosition = null}
+          else
+            {currentPosition = await Geolocator.getCurrentPosition()}
+        });
     return currentPosition;
   }
 

@@ -4,6 +4,7 @@ import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/screen/home_screen.dart';
 import 'package:salati/screen/qibla_screen.dart';
+import 'package:salati/screen/qiblatest.dart';
 import 'package:salati/screen/tasbih_screen.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -95,7 +96,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 HomeScreen(tasbihController: tasbihController),
-                QbilaView(controller: qiblaController,),
+                // QbilaView(controller: qiblaController,),
+                QiblaTest(controller: qiblaController,),
                 TasbihScreen(controller: tasbihController,),
                 const Text('ok'),
               ],

@@ -35,7 +35,7 @@ class _QbilaViewState extends State<QbilaView> {
           children: [
             Text('Latitude: ${currentPosition?.latitude}'),
             Text('Longitude: ${currentPosition?.longitude}'),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
              ElevatedButton(
                       onPressed: () {
                         setState(() {
@@ -46,7 +46,7 @@ class _QbilaViewState extends State<QbilaView> {
                           });
                         });
                       },
-                      child: Text('Fetch Qibla Direction'),
+                      child: const Text('Fetch Qibla Direction'),
                     ),
             
             const SizedBox(height: 20),
