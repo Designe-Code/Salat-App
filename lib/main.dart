@@ -6,19 +6,19 @@ import 'package:salati/helper/theme.dart';
 import 'package:salati/providers/prayer_provider.dart';
 import 'package:salati/providers/quran_provider.dart';
 import 'package:salati/providers/splash_provider.dart';
+import 'package:salati/providers/theme_provider.dart';
 import 'package:salati/screen/spalsh_screen.dart';
 
 void main() {
-  runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (context) => SplashProvider()),
-        ChangeNotifierProvider(create: (context) => PrayerProvider()),
-        ChangeNotifierProvider(create: (context) => QuranProvider()),
-      ],
-      child: const MyApp(),
-    )
-  );
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (context) => ThemeProvider()),
+      ChangeNotifierProvider(create: (context) => SplashProvider()),
+      ChangeNotifierProvider(create: (context) => PrayerProvider()),
+      ChangeNotifierProvider(create: (context) => QuranProvider()),
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: appName,
-      theme: lightTheme,
+      theme: Provider.of<ThemeProvider>(context).themeData,
       home: const SplashScreen(),
     );
   }

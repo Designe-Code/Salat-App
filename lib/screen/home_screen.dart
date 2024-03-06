@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage(headerBackground),
-              alignment: Alignment.topLeft,
+              alignment: Alignment.topCenter,
               fit: BoxFit.fitWidth
             )
           ),

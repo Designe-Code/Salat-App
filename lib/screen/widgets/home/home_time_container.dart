@@ -46,14 +46,11 @@ class _HomeTimeContainerState extends State<HomeTimeContainer> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(currentTime, style: Theme.of(context).textTheme.bodyLarge),
-                  Text(
-                    hijriTime,
-                    softWrap: true,
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: Colors.black.withOpacity(0.5),
-                    ),
-                  ),
+                  Text(currentTime,
+                      style: Theme.of(context).textTheme.bodyLarge),
+                  Text(hijriTime,
+                      softWrap: true,
+                      style: Theme.of(context).textTheme.bodySmall),
                 ],
               ),
             ),
@@ -95,7 +92,11 @@ class _HomeTimeContainerState extends State<HomeTimeContainer> {
                       color: getContainerColor(context).withOpacity(0.3),
                       shape: BoxShape.circle,
                     ),
-                    child: Center(child: Image(image: AssetImage(getIconPath()),width: 70,)),
+                    child: Center(
+                        child: Image(
+                      image: AssetImage(getIconPath()),
+                      width: 70,
+                    )),
                   ),
                 ],
               ),

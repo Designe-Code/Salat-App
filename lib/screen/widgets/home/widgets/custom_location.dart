@@ -20,9 +20,8 @@ class CustomLocation extends StatelessWidget{
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Location', style: Theme.of(context).textTheme.bodySmall?.copyWith(
-              color: Colors.black.withOpacity(0.5)
-            )),
+            Text('Location', style: Theme.of(context).textTheme.bodySmall
+            ),
             const SizedBox(height: 2),
             Text(location, style: Theme.of(context).textTheme.bodySmall),
           ],

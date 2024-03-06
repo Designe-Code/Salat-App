@@ -9,9 +9,9 @@ ThemeData lightTheme = ThemeData(
     secondary: const Color(0xFF23302A),
     onSecondary: const Color(0xFFFCD462),
     background: const Color(0xFFFFFFFF),
-    onBackground: const Color(0xFFF9F9F9),
     brightness: Brightness.light,
   ),
+  
   textTheme: TextTheme(
     bodySmall: GoogleFonts.poppins(
       fontSize: 12,
@@ -25,6 +25,33 @@ ThemeData lightTheme = ThemeData(
       fontSize: 32,
       fontWeight: FontWeight.w300,
       color: Colors.black
+    ),
+  )
+);
+ThemeData darkMode = ThemeData(
+  colorScheme: ColorScheme.fromSeed(
+    seedColor: const Color(0xFF06D6A0),
+    primary: const Color(0xFF06D6A0),
+    onPrimary: const Color(0xFFFFB800),
+    secondary: const Color(0xFFFFFFFF),
+    onSecondary: const Color(0xFFFCD462),
+    background: Colors.black54,
+    brightness: Brightness.dark,
+  ),
+  
+  textTheme: TextTheme(
+    bodySmall: GoogleFonts.poppins(
+      fontSize: 12,
+      color: Colors.white
+    ),
+    bodyMedium: GoogleFonts.poppins(
+      fontSize: 20,
+      color: Colors.white
+    ),
+    bodyLarge: GoogleFonts.poppins(
+      fontSize: 32,
+      fontWeight: FontWeight.w300,
+      color: Colors.white
     ),
   )
 );
