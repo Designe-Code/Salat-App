@@ -23,7 +23,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
      QiblaController qiblaController = QiblaController();
 
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Builder(builder: (BuildContext context) {
         final TabController tabController = DefaultTabController.of(context);
         tabController.addListener(() {
@@ -37,7 +37,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
               labelPadding: const EdgeInsets.all(10),
               labelColor: Theme.of(context).colorScheme.primary,
               labelStyle: Theme.of(context).textTheme.bodySmall,
-              unselectedLabelColor: Colors.black,
+              unselectedLabelColor: Theme.of(context).colorScheme.secondary,
               indicator: BoxDecoration(border: Border.all(color: Colors.transparent)),
               tabs: [
                 _buildTab(
@@ -82,14 +82,6 @@ class _NavBarScreenState extends State<NavBarScreen> {
                     iconlabel: 'Tasbih',
                     index: 2
                   ),
-                _buildTab(
-                    activeIcon: Icon(Icons.menu,
-                        size: 28,
-                        color: Theme.of(context).colorScheme.background),
-                    inactiveIcon:
-                        const Icon(Icons.menu, size: 28, color: Colors.black),
-                    iconlabel: 'More',
-                    index: 3),
               ],
             ),
             body: TabBarView(
@@ -99,7 +91,6 @@ class _NavBarScreenState extends State<NavBarScreen> {
                 // QbilaView(controller: qiblaController,),
                 QiblaTest(controller: qiblaController,),
                 TasbihScreen(controller: tasbihController,),
-                const Text('ok'),
               ],
             ));
       }),

@@ -85,7 +85,7 @@ class _SplashScreenState extends State<SplashScreen> {
                             width: 68,
                             height: 68,
                             decoration: BoxDecoration(
-                              color: Theme.of(context).colorScheme.onBackground,
+                              color: Theme.of(context).colorScheme.background,
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: Icon(
