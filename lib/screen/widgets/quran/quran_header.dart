@@ -45,7 +45,7 @@ class QuranHeader extends StatelessWidget {
                   )),
                   const SizedBox(height: 5),
                   SizedBox(
-                    width: 150,
+                    width: 170,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Theme.of(context).colorScheme.background,

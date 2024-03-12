@@ -33,22 +33,23 @@ class _HomePrayerContainerState extends State<HomePrayerContainer> {
       ),
       child: Consumer<PrayerProvider>(
         builder: (context, prayerProvider, child) {
+          prayerController.setPrayerTime(prayerProvider.timings);
           return ListView.builder(
             padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
-            itemCount: prayerProvider.prayers.length,
+            itemCount: prayerController.prayers.length,
             itemBuilder: (context, index) {
               return PrayerListItem(
                 index: index,
-                activeIndex: prayerProvider.getNextAdhan()['index'],
-                icon: prayerProvider.prayers[index].icon ?? '',
-                adan: prayerProvider.prayers[index].adan ?? '',
-                time: prayerProvider.getListAdhanTimes()[index] ?? '',
-                bell: prayerProvider.prayers[index].bell ?? '',
+                activeIndex: prayerProvider.activePrayerIndex,
+                icon: prayerController.prayers[index].icon ?? '',
+                adan: prayerController.prayers[index].adan ?? '',
+                time: prayerController.prayers[index].time ?? '',
+                bell: prayerController.prayers[index].bell ?? '',
                 onPressedBell: () {
-                  if (prayerProvider.prayers[index].bell == activeBell) {
-                    prayerProvider.prayers[index].bell = inactiveBell;
+                  if (prayerController.prayers[index].bell == activeBell) {
+                    prayerController.prayers[index].bell = inactiveBell;
                   } else {
-                    prayerProvider.prayers[index].bell = activeBell;
+                    prayerController.prayers[index].bell = activeBell;
                   }
                   setState(() {
                     _activeBellChange = _activeBellChange + 1;
