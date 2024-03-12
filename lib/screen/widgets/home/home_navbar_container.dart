@@ -43,11 +43,14 @@ class HomeNavBarContainer extends StatelessWidget {
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.65,
             child: Consumer<PrayerProvider>(
-              builder: (context, homeProvider, child) {
+              builder: (context, prayerProvider, child) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    NextAdan(nextAdan: homeProvider.getNextAdhan()['name'], time: homeProvider.getNextAdhan()['time']),
+                    NextAdan(
+                      nextAdan: prayerController.prayers[prayerProvider.activePrayerIndex].adan ?? '',
+                      time: prayerController.prayers[prayerProvider.activePrayerIndex].time ?? ''
+                    ),
                     CustomLocation(location: city)
                   ],
                 );

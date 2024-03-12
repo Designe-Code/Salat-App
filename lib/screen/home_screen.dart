@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/models/prayer_data.dart';
+import 'package:salati/providers/prayer_provider.dart';
 import 'package:salati/screen/widgets/home/home_navbar_container.dart';
 import 'package:salati/screen/widgets/home/home_prayer_container.dart';
 import 'package:salati/screen/widgets/home/home_time_container.dart';
@@ -19,6 +21,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   late Future<Timings>? futurePrayerTiming;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final prayerProvider = context.watch<PrayerProvider>();
+    prayerProvider.setTimings();
+    prayerProvider.setActivePrayerIndex();
+  }
 
   @override
   Widget build(BuildContext context) {

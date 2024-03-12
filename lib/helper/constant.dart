@@ -1,4 +1,5 @@
 import 'package:salati/controllers/qibla_controller.dart';
+import 'package:salati/controllers/prayer_controller.dart';
 import 'package:salati/controllers/quran_controller.dart';
 
 const String appName = 'Salati';
@@ -42,5 +43,6 @@ const String quranTable = 'assets/images/quran_table.png';
 const String quranItemNumber = 'assets/images/quran_item_number.png'; 
 
 // controllers
-QuranController quranController = QuranController();
+PrayerController prayerController = PrayerController();
 QiblaController qiblaController = QiblaController();
+QuranController quranController = QuranController();

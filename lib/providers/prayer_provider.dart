@@ -1,127 +1,39 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:salati/helper/constant.dart';
 import 'package:salati/helper/functions.dart';
-import 'package:salati/models/prayer.dart';
 import 'package:salati/models/prayer_data.dart';
-import 'package:salati/services/shared_preferences_service.dart';
+import 'package:salati/services/prayer_service.dart';
 
 class PrayerProvider extends ChangeNotifier {
   Timings? _timings;
-
-  final List<Prayer> prayers = [
-    Prayer(
-      index: 0,
-      icon: smallFajr,
-      adan: 'Fajr',
-      time: '',
-      bell: activeBell
-    ),
-    Prayer(
-      index: 1,
-      icon: smallSunrise,
-      adan: 'Sunrise',
-      time: '',
-      bell: activeBell
-    ),
-    Prayer(
-      index: 2,
-      icon: smallDuhr,
-      adan: 'Duhr',
-      time: '',
-      bell: activeBell
-    ),
-    Prayer(
-      index: 3,
-      icon: smallAsr,
-      adan: 'Assr',
-      time: '',
-      bell: inactiveBell
-    ),
-    Prayer(
-      index: 4,
-      icon: smallMaghrib,
-      adan: 'Maghrib',
-      time: '',
-      bell: activeBell
-    ),
-    Prayer(
-      index: 5,
-      icon: smallIshaa,
-      adan: 'Ishaa',
-      time: '',
-      bell: activeBell
-    ),
-  ];
+  int _activePrayerIndex = 0;
 
   Timings? get timings => _timings;
+  int get activePrayerIndex => _activePrayerIndex;
 
   void setTimings() {
-    SharedPreferencesService.getStringData('timings')
-      .then((timingsValue) => {
-        _timings = Timings.fromJson(jsonDecode(timingsValue))
+    PrayerService.getPrayerTimings(city: 'Ouarzazate', country: 'Maroc')
+      .then((timingsValue) {
+        _timings = timingsValue;
+        notifyListeners();
       });
-    notifyListeners();
   }
 
-  List<String?> getListAdhanTimes() {
-    return [
-      formatTime(_timings?.fajr),
-      formatTime(_timings?.sunrise),
-      formatTime(_timings?.dhuhr),
-      formatTime(_timings?.asr),
-      formatTime(_timings?.maghrib),
-      formatTime(_timings?.isha)
-    ];
-  }
-
-  Map<String, dynamic> getNextAdhan() {
+  void setActivePrayerIndex() {
     DateTime now = DateTime.now();
     String currentTime = DateFormat.jm().format(now);
     if (getTimeStamp(currentTime) > getTimeStamp(formatTime(_timings?.isha))) {
-      return {
-        'index': 0,
-        'name': 'Fajr',
-        'time': _timings?.fajr ?? '',
-      };
+      _activePrayerIndex = 0;
     } else if (getTimeStamp(currentTime) > getTimeStamp(formatTime(timings?.maghrib))) {
-      return {
-        'index': 5,
-        'name': 'Ishaa',
-        'time': _timings?.isha ?? '',
-      };
+      _activePrayerIndex = 5;
     } else if (getTimeStamp(currentTime) > getTimeStamp(formatTime(timings?.asr))) {
-      return {
-        'index': 4,
-        'name': 'Maghrib',
-        'time': _timings?.maghrib ?? '',
-      };
+      _activePrayerIndex = 4;
     } else if (getTimeStamp(currentTime) > getTimeStamp(formatTime(timings?.dhuhr))) {
-      return {
-        'index': 3,
-        'name': 'Assr',
-        'time': _timings?.asr ?? '',
-      };
+      _activePrayerIndex = 3;
     } else if (getTimeStamp(currentTime) > getTimeStamp(formatTime(timings?.sunrise))) {
-      return {
-        'index': 2,
-        'name': 'Duhr',
-        'time': _timings?.dhuhr ?? '',
-      };
+      _activePrayerIndex = 2;
     } else if (getTimeStamp(currentTime) > getTimeStamp(formatTime(timings?.fajr))) {
-      return {
-        'index': 1,
-        'name': 'Sunrise',
-        'time': _timings?.sunrise ?? '',
-      };
+      _activePrayerIndex = 1;
     }
-    return {
-        'index': 0,
-        'name': 'Fajr',
-        'time': _timings?.fajr ?? '',
-      };
   }
-
 }

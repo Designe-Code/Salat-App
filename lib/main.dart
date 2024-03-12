@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:salati/helper/constant.dart';
-import 'package:salati/helper/theme.dart';
 import 'package:salati/providers/prayer_provider.dart';
 import 'package:salati/providers/quran_provider.dart';
 import 'package:salati/providers/splash_provider.dart';

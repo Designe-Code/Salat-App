@@ -18,9 +18,12 @@ String formatTime(time) {
 }
 
 int getTimeStamp(time) {
-  DateTime dateTime = DateFormat.jm().parse(time);
-  int timestamp = dateTime.millisecondsSinceEpoch;
-  return timestamp;
+  if (time != '' && time != null) {
+    DateTime dateTime = DateFormat.jm().parse(time);
+    int timestamp = dateTime.millisecondsSinceEpoch;
+    return timestamp;
+  }
+  return 0;
 }
 
 String getCurrentTime() {
