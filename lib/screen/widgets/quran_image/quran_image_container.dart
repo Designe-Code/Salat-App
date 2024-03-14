@@ -40,7 +40,7 @@ class _QuranImageContainerState extends State<QuranImageContainer> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text('Surah $surahName', style: Theme.of(context).textTheme.bodySmall),
-                Text('Jus\'$juzaa', style: Theme.of(context).textTheme.bodySmall)
+                Text('Juz\'$juzaa', style: Theme.of(context).textTheme.bodySmall)
               ],
             ),
           ),
