@@ -38,9 +38,17 @@ const String smallIshaa = 'assets/images/small_ishaa.png';
 const String activeBell = 'assets/images/active_bell.png';
 const String inactiveBell = 'assets/images/inactive_bell.png';
 const String compass = 'assets/images/qiblacompass.png';
+const String qiblaAccuracy = 'assets/images/qibla-accuracy.png'; 
 const String quranHeaderBackground = 'assets/images/quran_header_background.png';
 const String quranTable = 'assets/images/quran_table.png';
-const String quranItemNumber = 'assets/images/quran_item_number.png'; 
+const String quranItemNumber = 'assets/images/quran_item_number.png';
+const String traduction = 'assets/images/traduction.png';
+const String bookMark = 'assets/images/book-mark.png';
+const String bookMarkInactive = 'assets/images/book-mark-inactive.png';
+
+
+// quran images
+String quranImagePage(index) => 'assets/quran-images/$index.png';
 
 // controllers
 PrayerController prayerController = PrayerController();

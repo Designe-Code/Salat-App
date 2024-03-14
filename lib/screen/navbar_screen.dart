@@ -4,7 +4,6 @@ import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/screen/home_screen.dart';
 import 'package:salati/screen/qibla_screen.dart';
-import 'package:salati/screen/qiblatest.dart';
 import 'package:salati/screen/tasbih_screen.dart';
 
 class NavBarScreen extends StatefulWidget {
@@ -23,7 +22,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
      QiblaController qiblaController = QiblaController();
 
     return DefaultTabController(
-      length: 3,
+      length: 4,
       child: Builder(builder: (BuildContext context) {
         final TabController tabController = DefaultTabController.of(context);
         tabController.addListener(() {
@@ -82,15 +81,24 @@ class _NavBarScreenState extends State<NavBarScreen> {
                     iconlabel: 'Tasbih',
                     index: 2
                   ),
+                  _buildTab(
+                    activeIcon: Icon(Icons.menu,
+                        size: 28,
+                        color: Theme.of(context).colorScheme.background),
+                    inactiveIcon:
+                        const Icon(Icons.menu, size: 28, color: Colors.black),
+                    iconlabel: 'More',
+                    index: 3
+                  ),
               ],
             ),
             body: TabBarView(
               physics: const NeverScrollableScrollPhysics(),
               children: [
                 HomeScreen(tasbihController: tasbihController),
-                // QbilaView(controller: qiblaController,),
-                QiblaTest(controller: qiblaController,),
-                TasbihScreen(controller: tasbihController,),
+                QiblaScreen(controller: qiblaController),
+                TasbihScreen(controller: tasbihController),
+                const Center(child: Text('Menu')),
               ],
             ));
       }),
