@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:salati/screen/widgets/quran/quran_juz.dart';
 // import 'package:provider/provider.dart';
 // import 'package:salati/providers/quran_provider.dart';
 import 'package:salati/screen/widgets/quran/quran_surah.dart';
@@ -45,7 +46,7 @@ class QuranTabBar extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               children: [
                 QuranSurah(),
-                Center(child: Text('2')),
+                QuranJuz(),
                 Center(child: Text('3')),
                 Center(child: Text('4')),
               ]

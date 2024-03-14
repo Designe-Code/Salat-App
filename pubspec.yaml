@@ -44,7 +44,6 @@ dependencies:
   geolocator: ^11.0.0
   quran: ^1.2.3
   flutter_compass: ^0.8.0
-  permission_handler: ^11.3.0
   percent_indicator: ^4.2.3
   carousel_slider: ^4.2.1
 
