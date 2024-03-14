@@ -45,7 +45,9 @@ dependencies:
   quran: ^1.2.3
   flutter_compass: ^0.8.0
   permission_handler: ^11.3.0
+  percent_indicator: ^4.2.3
   carousel_slider: ^4.2.1
+
 
 dev_dependencies:
   flutter_test:
@@ -72,6 +74,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - lib/models/data/adhkar.json
     - assets/quran-images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

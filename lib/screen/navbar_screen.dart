@@ -16,6 +16,31 @@ class NavBarScreen extends StatefulWidget {
 class _NavBarScreenState extends State<NavBarScreen> {
   int _selectedIndex = 0;
 
+  Widget _buildTab(
+      {Widget? activeIcon,
+      Widget? inactiveIcon,
+      String? iconlabel,
+      int? index}) {
+    return Tab(
+      icon: _selectedIndex == index
+          ? Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Theme.of(context).colorScheme.primary),
+              child: Center(child: activeIcon))
+          : Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Theme.of(context).colorScheme.background),
+              child: Center(child: inactiveIcon)),
+      text: iconlabel,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
      TasbihController tasbihController = TasbihController();
@@ -102,31 +127,6 @@ class _NavBarScreenState extends State<NavBarScreen> {
               ],
             ));
       }),
-    );
-  }
-
-  Widget _buildTab(
-      {Widget? activeIcon,
-      Widget? inactiveIcon,
-      String? iconlabel,
-      int? index}) {
-    return Tab(
-      icon: _selectedIndex == index
-          ? Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.primary),
-              child: Center(child: activeIcon))
-          : Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.background),
-              child: Center(child: inactiveIcon)),
-      text: iconlabel,
     );
   }
 }
