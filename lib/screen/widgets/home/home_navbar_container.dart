@@ -4,7 +4,8 @@ import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/helper/functions.dart';
 import 'package:salati/providers/prayer_provider.dart';
-import 'package:salati/providers/theme_provider.dart';
+// import 'package:salati/providers/theme_provider.dart';
+import 'package:salati/screen/adkar_screen.dart';
 import 'package:salati/screen/quran_screen.dart';
 import 'package:salati/screen/tasbih_screen.dart';
 import 'package:salati/screen/widgets/home/widgets/custom_icon_button.dart';
@@ -18,8 +19,8 @@ class HomeNavBarContainer extends StatelessWidget {
     required this.city,
   });
 
-  final TasbihController tasbihController;
   final String city;
+  final TasbihController tasbihController;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +88,11 @@ class HomeNavBarContainer extends StatelessWidget {
                   icon: adkar,
                   iconlabel: 'Adkar',
                   onPressed: () {
-                    Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+                    // Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+                     Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AdkarScreen()),
+                    );
                   }
                 ),
                 CustomIconButton(

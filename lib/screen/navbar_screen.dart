@@ -3,7 +3,7 @@ import 'package:salati/controllers/qibla_controller.dart';
 import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/screen/home_screen.dart';
-import 'package:salati/screen/qibla_screen.dart';
+// import 'package:salati/screen/qibla_screen.dart';
 import 'package:salati/screen/qiblatest.dart';
 import 'package:salati/screen/tasbih_screen.dart';
 
@@ -16,6 +16,31 @@ class NavBarScreen extends StatefulWidget {
 
 class _NavBarScreenState extends State<NavBarScreen> {
   int _selectedIndex = 0;
+
+  Widget _buildTab(
+      {Widget? activeIcon,
+      Widget? inactiveIcon,
+      String? iconlabel,
+      int? index}) {
+    return Tab(
+      icon: _selectedIndex == index
+          ? Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Theme.of(context).colorScheme.primary),
+              child: Center(child: activeIcon))
+          : Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(50),
+                  color: Theme.of(context).colorScheme.background),
+              child: Center(child: inactiveIcon)),
+      text: iconlabel,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -94,31 +119,6 @@ class _NavBarScreenState extends State<NavBarScreen> {
               ],
             ));
       }),
-    );
-  }
-
-  Widget _buildTab(
-      {Widget? activeIcon,
-      Widget? inactiveIcon,
-      String? iconlabel,
-      int? index}) {
-    return Tab(
-      icon: _selectedIndex == index
-          ? Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.primary),
-              child: Center(child: activeIcon))
-          : Container(
-              width: 40,
-              height: 40,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.background),
-              child: Center(child: inactiveIcon)),
-      text: iconlabel,
     );
   }
 }

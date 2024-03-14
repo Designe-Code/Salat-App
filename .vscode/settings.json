@@ -1,3 +1,18 @@
 {
-  "dart.flutterSdkPath": "C:\\flutter-3.13.9"
+  "dart.sdkPath": null,
+  "[javascriptreact]": {
+      "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "emulator.emulatorPath": "C:\\Users\\LUCEOM\\AppData\\Local\\Android\\Sdk\\emulator",
+  "emulator.emulatorPathWindows": "C:\\Users\\LUCEOM\\AppData\\Local\\Android\\Sdk\\emulator",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "dart.flutterSdkPaths": [
+      "C:\\flutter",
+      "C:\\flutter-3.13.9",
+      "C:\\flutter_3"
+  ],
+  "workbench.colorTheme": "Palenight (Mild Contrast)",
+  "workbench.startupEditor": "none",
+  "dart.flutterSdkPath": null
 }

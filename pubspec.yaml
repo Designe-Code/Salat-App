@@ -45,6 +45,7 @@ dependencies:
   quran: ^1.2.3
   flutter_compass: ^0.8.0
   permission_handler: ^11.3.0
+  percent_indicator: ^4.2.3
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
+    - lib/models/data/adhkar.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

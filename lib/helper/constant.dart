@@ -10,7 +10,8 @@ const String qiblaApiUrl = 'http://api.aladhan.com/v1/qibla';
 
 //images
 const String logo = 'assets/images/logo.png';
-const String splashScreenBackground = 'assets/images/splash_screen_background.png';
+const String splashScreenBackground =
+    'assets/images/splash_screen_background.png';
 const String mosque = 'assets/images/mosque.png';
 const String quran = 'assets/images/quran.png';
 const String adkar = 'assets/images/adkar.png';
@@ -38,11 +39,19 @@ const String smallIshaa = 'assets/images/small_ishaa.png';
 const String activeBell = 'assets/images/active_bell.png';
 const String inactiveBell = 'assets/images/inactive_bell.png';
 const String compass = 'assets/images/qiblacompass.png';
-const String quranHeaderBackground = 'assets/images/quran_header_background.png';
+const String quranHeaderBackground =
+    'assets/images/quran_header_background.png';
 const String quranTable = 'assets/images/quran_table.png';
-const String quranItemNumber = 'assets/images/quran_item_number.png'; 
+const String quranItemNumber = 'assets/images/quran_item_number.png';
+const String morningdikr = 'assets/images/morningdikr.jpg';
+const String morninghigh = 'assets/images/morninghigh.png';
+const String eveningdikr = 'assets/images/eveningdikr.jpg';
+const String eveninghigh = 'assets/images/eveningdikrhigh.jpg';
+const String nightdikr = 'assets/images/nightdikr.jpg';
+const String fantasy = 'assets/images/fantasy.jpg';
 
 // controllers
 PrayerController prayerController = PrayerController();
 QiblaController qiblaController = QiblaController();
 QuranController quranController = QuranController();
+
