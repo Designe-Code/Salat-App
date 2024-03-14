@@ -23,7 +23,7 @@ class PrayerListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 40,
+      height: MediaQuery.sizeOf(context).height * 0.041,
       child: Container(
         decoration: BoxDecoration(
           color: index == activeIndex ? Theme.of(context).colorScheme.secondary : Theme.of(context).colorScheme.background,

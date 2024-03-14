@@ -46,6 +46,8 @@ dependencies:
   flutter_compass: ^0.8.0
   permission_handler: ^11.3.0
   percent_indicator: ^4.2.3
+  carousel_slider: ^4.2.1
+
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +75,7 @@ flutter:
   assets:
     - assets/images/
     - lib/models/data/adhkar.json
+    - assets/quran-images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

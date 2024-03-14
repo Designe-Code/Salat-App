@@ -49,6 +49,14 @@ const String eveningdikr = 'assets/images/eveningdikr.jpg';
 const String eveninghigh = 'assets/images/eveningdikrhigh.jpg';
 const String nightdikr = 'assets/images/nightdikr.jpg';
 const String fantasy = 'assets/images/fantasy.jpg';
+const String qiblaAccuracy = 'assets/images/qibla-accuracy.png'; 
+const String traduction = 'assets/images/traduction.png';
+const String bookMark = 'assets/images/book-mark.png';
+const String bookMarkInactive = 'assets/images/book-mark-inactive.png';
+
+
+// quran images
+String quranImagePage(index) => 'assets/quran-images/$index.png';
 
 // controllers
 PrayerController prayerController = PrayerController();
