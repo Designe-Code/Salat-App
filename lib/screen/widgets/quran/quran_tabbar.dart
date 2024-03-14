@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 // import 'package:provider/provider.dart';
 // import 'package:salati/providers/quran_provider.dart';
 import 'package:salati/screen/widgets/quran/quran_surah.dart';
@@ -17,13 +19,14 @@ class QuranTabBar extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.9,
             child: TabBar(
               labelColor: Theme.of(context).colorScheme.primary,
+              dividerHeight: 0,
               unselectedLabelColor: Colors.black,
               overlayColor: const MaterialStatePropertyAll(Colors.transparent),
               indicatorColor: Theme.of(context).colorScheme.primary,
               indicatorPadding: const EdgeInsets.only(bottom: 10),
               indicator: UnderlineTabIndicator(
                 borderSide: BorderSide(width: 2.0, color: Theme.of(context).colorScheme.primary),
-                insets: const EdgeInsets.symmetric(horizontal: 35),
+                insets: const EdgeInsets.symmetric(horizontal: 25),
               ),
               // onTap: (activeTabIndex) {
               //   Provider.of<QuranProvider>(context, listen:false).setCurrentTab(tabsName[activeTabIndex]);

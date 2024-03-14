@@ -18,7 +18,7 @@ class _HomePrayerContainerState extends State<HomePrayerContainer> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.92,
-      height: MediaQuery.of(context).size.height * 0.31,
+      height: MediaQuery.of(context).size.height * 0.25,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.background,
         borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -35,7 +35,7 @@ class _HomePrayerContainerState extends State<HomePrayerContainer> {
         builder: (context, prayerProvider, child) {
           prayerController.setPrayerTime(prayerProvider.timings);
           return ListView.builder(
-            padding: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+            padding: const EdgeInsets.all(0),
             itemCount: prayerController.prayers.length,
             itemBuilder: (context, index) {
               return PrayerListItem(
