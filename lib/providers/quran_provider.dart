@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 class QuranProvider extends ChangeNotifier{
-  String currentTab = 'Surah';
+  int currentPage = 1;
+  bool isBookMarkActive = true;
 
-  void setCurrentTab(String currentTabValue) {
-    currentTab = currentTabValue;
+  void setCurrentPage(int currentPageValue) {
+    currentPage = currentPageValue;
+    notifyListeners();
+  }
+
+  void setIsBookMarkActive(bool isBookMarkActiveValue) {
+    isBookMarkActive = isBookMarkActiveValue;
     notifyListeners();
   }
 }

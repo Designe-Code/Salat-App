@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:salati/helper/constant.dart';
+import 'package:salati/providers/quran_provider.dart';
 import 'package:salati/screen/widgets/quran_image/widgets/custom_quran_image_tab.dart';
 
 class QuranImageNavBar extends StatefulWidget {
@@ -10,8 +12,8 @@ class QuranImageNavBar extends StatefulWidget {
 }
 
 class _QuranImageNavBarState extends State<QuranImageNavBar> {
-  bool isBookMarkActive = false;
   bool isPlay = false;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -89,14 +91,21 @@ class _QuranImageNavBarState extends State<QuranImageNavBar> {
                 ),
                 title: isPlay ? 'Pause' : 'Play'
               ),
-              CustomQuranImageTab(
-                onPressed: () {
-                  setState(() {
-                    isBookMarkActive = !isBookMarkActive;
-                  });
-                },
-                icon: Image(image: AssetImage(isBookMarkActive ? bookMark : bookMarkInactive)),
-                title: 'bookMark'
+              Consumer<QuranProvider>(
+                builder: (context, quranProvider, chilsd) {
+                  return CustomQuranImageTab(
+                    onPressed: () {
+                      quranProvider.setIsBookMarkActive(!quranProvider.isBookMarkActive);
+                      if (quranProvider.isBookMarkActive) {
+                        quranController.addPageToPagesBookMarksList(quranProvider.currentPage);
+                      } else {
+                        quranController.removePageFromPagesBookMarksList(quranProvider.currentPage);
+                      }
+                    },
+                    icon: Image(image: AssetImage(quranProvider.isBookMarkActive ? bookMark : bookMarkInactive)),
+                    title: 'bookMark'
+                  );
+                }
               )
             ]
           ),

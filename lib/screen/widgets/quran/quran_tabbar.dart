@@ -1,9 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:salati/screen/widgets/quran/quran_book_mark.dart';
+import 'package:salati/screen/widgets/quran/quran_hizb.dart';
 import 'package:salati/screen/widgets/quran/quran_juz.dart';
-// import 'package:provider/provider.dart';
-// import 'package:salati/providers/quran_provider.dart';
 import 'package:salati/screen/widgets/quran/quran_surah.dart';
 
 class QuranTabBar extends StatelessWidget {
@@ -11,14 +9,14 @@ class QuranTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // const List<String> tabsName = ['Surah', 'Juz\'', 'Hizb', 'Page'];
     return DefaultTabController(
       length: 4,
       child: Column(
         children: [
           SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
             child: TabBar(
+              labelPadding: EdgeInsets.symmetric(horizontal: MediaQuery.sizeOf(context).width * 0.06),
+              tabAlignment: TabAlignment.center,
               labelColor: Theme.of(context).colorScheme.primary,
               dividerHeight: 0,
               unselectedLabelColor: Colors.black,
@@ -29,26 +27,23 @@ class QuranTabBar extends StatelessWidget {
                 borderSide: BorderSide(width: 2.0, color: Theme.of(context).colorScheme.primary),
                 insets: const EdgeInsets.symmetric(horizontal: 25),
               ),
-              // onTap: (activeTabIndex) {
-              //   Provider.of<QuranProvider>(context, listen:false).setCurrentTab(tabsName[activeTabIndex]);
-              // },
               tabs: const [
                 Tab(text: 'Surah'),
                 Tab(text: 'Juz\''),
                 Tab(text: 'Hizb'),
-                Tab(text: 'Page'),
+                Tab(text: 'bookMark'),
               ]
             ),
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height *0.532,
+            height: MediaQuery.of(context).size.height * 0.532,
             child: const TabBarView(
               physics: NeverScrollableScrollPhysics(),
               children: [
                 QuranSurah(),
                 QuranJuz(),
-                Center(child: Text('3')),
-                Center(child: Text('4')),
+                QuranHizb(),
+                QuranBookMark(),
               ]
             ),
           )

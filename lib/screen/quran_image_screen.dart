@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:salati/screen/widgets/quran_image/quran_image_container.dart';
-import 'package:salati/screen/widgets/quran_image/quran_image_navbar.dart';
+import 'package:salati/screen/widgets/quran_image/quran_image_tab_bar.dart';
 
 class QuranImageScreen extends StatelessWidget {
   const QuranImageScreen({
