@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quran/quran.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/helper/functions.dart';
 import 'package:salati/screen/widgets/quran/quran_header.dart';
@@ -18,15 +17,9 @@ class _QuranScreenState extends State<QuranScreen> {
     super.initState();
     quranController.setListSurah();
     quranController.setListJuz();
-    int getFirstKey(Map<int, dynamic> map) {
-      for (var entry in map.entries) {
-        return entry.key;
-      }
-      return 1;
-    }
-    int page = getPageNumber(getFirstKey(getSurahAndVersesFromJuz(30)), getSurahAndVersesFromJuz(30)[getFirstKey(getSurahAndVersesFromJuz(30))]?[0] ?? 1);
-    print(page);
+    quranController.setListHizb();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

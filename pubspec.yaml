@@ -46,6 +46,7 @@ dependencies:
   flutter_compass: ^0.8.0
   percent_indicator: ^4.2.3
   carousel_slider: ^4.2.1
+  logger: ^2.1.0
 
 
 dev_dependencies:

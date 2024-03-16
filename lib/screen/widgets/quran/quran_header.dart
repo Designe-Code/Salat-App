@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:quran/quran.dart';
 import 'package:salati/helper/constant.dart';
+import 'package:salati/helper/functions.dart';
 import 'package:salati/providers/quran_provider.dart';
+import 'package:salati/screen/quran_image_screen.dart';
 
 class QuranHeader extends StatelessWidget {
   const QuranHeader({super.key});
@@ -40,30 +43,50 @@ class QuranHeader extends StatelessWidget {
                     color: Theme.of(context).colorScheme.background
                   )),
                   const SizedBox(height: 5),
-                  Text('Al - Fatihah', style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.background
-                  )),
+                  FutureBuilder(
+                    future: quranController.getLastReadPage(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return Text(
+                          getSurahName(getPageData(snapshot.data ?? 1)[0]['surah']),
+                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.background
+                          )
+                        );
+                      }
+                      return const SizedBox();
+                    }
+                  ),
                   const SizedBox(height: 5),
                   SizedBox(
                     width: 170,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Theme.of(context).colorScheme.background,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
-                        )
-                      ),
-                      onPressed: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text('Back to reading', style: Theme.of(context).textTheme.bodySmall),
-                          const Icon(Icons.arrow_forward_ios_outlined, size: 15, color: Colors.black)
-                        ],
-                      )
-                    ),
+                    child: FutureBuilder(
+                      future: quranController.getLastReadPage(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: Theme.of(context).colorScheme.background,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(40.0),
+                              )
+                            ),
+                            onPressed: () {
+                              navigateTo(context, QuranImageScreen(page: snapshot.data ?? 1));
+                            },
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text('Back to reading', style: Theme.of(context).textTheme.bodySmall),
+                                const Icon(Icons.arrow_forward_ios_outlined, size: 15, color: Colors.black)
+                              ],
+                            )
+                          );
+                        }
+                        return const SizedBox();
+                      }
+                    )
                   )
-                    
                 ],
               );
             }
