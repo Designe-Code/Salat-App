@@ -3,6 +3,7 @@ import 'package:salati/controllers/qibla_controller.dart';
 import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
 import 'package:salati/screen/home_screen.dart';
+import 'package:salati/screen/more_screen.dart';
 import 'package:salati/screen/qibla_screen.dart';
 import 'package:salati/screen/tasbih_screen.dart';
 
@@ -43,8 +44,8 @@ class _NavBarScreenState extends State<NavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-     TasbihController tasbihController = TasbihController();
-     QiblaController qiblaController = QiblaController();
+    TasbihController tasbihController = TasbihController();
+    QiblaController qiblaController = QiblaController();
 
     return DefaultTabController(
       length: 4,
@@ -56,13 +57,14 @@ class _NavBarScreenState extends State<NavBarScreen> {
           });
         });
         return Scaffold(
-          backgroundColor: Theme.of(context).colorScheme.background,
+            backgroundColor: Theme.of(context).colorScheme.background,
             bottomNavigationBar: TabBar(
               labelPadding: const EdgeInsets.all(10),
               labelColor: Theme.of(context).colorScheme.primary,
               labelStyle: Theme.of(context).textTheme.bodySmall,
               unselectedLabelColor: Theme.of(context).colorScheme.secondary,
-              indicator: BoxDecoration(border: Border.all(color: Colors.transparent)),
+              indicator:
+                  BoxDecoration(border: Border.all(color: Colors.transparent)),
               tabs: [
                 _buildTab(
                     activeIcon: const Image(
@@ -104,17 +106,15 @@ class _NavBarScreenState extends State<NavBarScreen> {
                             width: 28,
                             height: 28)),
                     iconlabel: 'Tasbih',
-                    index: 2
-                  ),
-                  _buildTab(
+                    index: 2),
+                _buildTab(
                     activeIcon: Icon(Icons.menu,
                         size: 28,
                         color: Theme.of(context).colorScheme.background),
                     inactiveIcon:
                         const Icon(Icons.menu, size: 28, color: Colors.black),
                     iconlabel: 'More',
-                    index: 3
-                  ),
+                    index: 3),
               ],
             ),
             body: TabBarView(
@@ -123,7 +123,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
                 HomeScreen(tasbihController: tasbihController),
                 QiblaScreen(controller: qiblaController),
                 TasbihScreen(controller: tasbihController),
-                const Center(child: Text('Menu')),
+                const MoreScreen()
               ],
             ));
       }),

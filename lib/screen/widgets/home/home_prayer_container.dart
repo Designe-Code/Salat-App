@@ -18,7 +18,7 @@ class _HomePrayerContainerState extends State<HomePrayerContainer> {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.92,
-      height: MediaQuery.of(context).size.height * 0.25,
+      height: MediaQuery.of(context).size.height * 0.35,
       decoration: BoxDecoration(
         color: Theme.of(context).colorScheme.background,
         borderRadius: const BorderRadius.all(Radius.circular(20)),
@@ -31,10 +31,10 @@ class _HomePrayerContainerState extends State<HomePrayerContainer> {
           ),
         ],
       ),
-      child: Consumer<PrayerProvider>(
-        builder: (context, prayerProvider, child) {
-          prayerController.setPrayerTime(prayerProvider.timings);
-          return ListView.builder(
+      child:
+          Consumer<PrayerProvider>(builder: (context, prayerProvider, child) {
+        prayerController.setPrayerTime(prayerProvider.timings);
+        return ListView.builder(
             padding: const EdgeInsets.all(0),
             itemCount: prayerController.prayers.length,
             itemBuilder: (context, index) {
@@ -56,10 +56,8 @@ class _HomePrayerContainerState extends State<HomePrayerContainer> {
                   });
                 },
               );
-            }
-          );
-        }
-      ),
+            });
+      }),
     );
   }
 }
