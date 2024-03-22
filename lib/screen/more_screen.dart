@@ -1,71 +1,101 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:salati/helper/functions.dart';
+import 'package:salati/helper/theme.dart';
 import 'package:salati/screen/about_screen.dart';
-
 import '../providers/theme_provider.dart';
-import 'widgets/settings_container.dart';
 
-class MoreScreen extends StatelessWidget {
-  const MoreScreen({
-    super.key,
-  });
+class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text("Settings", style: Theme.of(context).textTheme.bodyMedium),
-              ],
-            ),
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
+        body: SafeArea(
+            child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                   Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SettingsContainer(
-                    iconData: Provider.of<ThemeProvider>(context).isDarkMode
-                        ? Icons.nightlight_round
-                        : Icons.wb_sunny,
-                    iconColor: Provider.of<ThemeProvider>(context).isDarkMode
-                        ? Colors.deepPurple
-                        : Colors.amber,
-                    text: Provider.of<ThemeProvider>(context).isDarkMode
-                        ? ('Darkmode')
-                        : ('Light mode'),
-                    additionalWidget: Switch(
-                      value: Provider.of<ThemeProvider>(context).isDarkMode,
-                      onChanged: (value) {
-                        Provider.of<ThemeProvider>(context, listen: false)
-                            .toggleTheme();
-                      },
-                    ),
+                  Text("Qibla", style: Theme.of(context).textTheme.bodyMedium),
+                ],
+              ),
+               const SizedBox(height: 32),
+                  Consumer<ThemeProvider>(
+                    builder: (context, themeProvider, child) {
+                      return Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            border: Border.all(
+                                width: 2,
+                                color: Colors.grey.shade50.withOpacity(0.3)),
+                            color: Theme.of(context).colorScheme.background),
+                        child: SwitchListTile(
+                          title: Row(
+                            children: [
+                              Icon(
+                                themeProvider.themeData == lightTheme
+                                    ? Icons.wb_sunny
+                                    : Icons.nightlight_round,
+                                color: themeProvider.themeData == lightTheme
+                                    ? Colors.orange
+                                    : Colors.blue,
+                              ),
+                              const SizedBox(width: 32),
+                              Text(
+                                themeProvider.themeData == lightTheme
+                                    ? 'Light Mode'
+                                    : 'Dark Mode',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: themeProvider.themeData == lightTheme
+                                      ? Colors.black
+                                      : Colors.white,
+                                ),
+                              ),
+                            ],
+                          ),
+                          value: themeProvider.themeData == darkMode,
+                          onChanged: (value) {
+                            themeProvider.toggleTheme();
+                          },
+                        ),
+                      );
+                    },
                   ),
-                  const SizedBox(
-                    height: 15,
-                  ),
+                  const SizedBox(height: 12.0),
                   GestureDetector(
-                    onTap: () => navigateTo(context, const AboutScreen()),
-                    child: SettingsContainer(
-                      iconData: Icons.info,
-                      iconColor: Theme.of(context).colorScheme.secondary,
-                      text: 'About',
-                      additionalWidget: Icon(
-                        Icons.arrow_forward_ios_rounded,
-                        color: Theme.of(context).colorScheme.secondary,
+                    onTap: ()=> navigateTo(context, const AboutScreen()),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                              width: 2,
+                              color: Colors.grey.shade50.withOpacity(0.3)),
+                          color: Theme.of(context).colorScheme.background),
+                      child: Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.info,
+                              color: Colors.blue,
+                            ),
+                            const SizedBox(width: 32),
+                            Text('About Salati',
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displaySmall?.copyWith(fontSize: 16)
+                                   ),
+                          ],
+                        ),
                       ),
                     ),
                   )
-                ],
-              ),
-            )
-          ],
-        ),
-      ),
-    );
+                ]))));
   }
 }

@@ -28,11 +28,15 @@ class MyApp extends StatelessWidget {
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
     ));
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: appName,
-      theme: Provider.of<ThemeProvider>(context).themeData,
-      home: const SplashScreen(),
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: appName,
+          theme: themeProvider.themeData,
+          home: const SplashScreen(),
+        );
+      },
     );
   }
 }

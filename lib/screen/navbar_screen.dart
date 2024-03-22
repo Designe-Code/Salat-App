@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:salati/controllers/qibla_controller.dart';
 import 'package:salati/controllers/tasbih_controller.dart';
 import 'package:salati/helper/constant.dart';
+import 'package:salati/helper/theme.dart';
 import 'package:salati/screen/home_screen.dart';
 import 'package:salati/screen/more_screen.dart';
 import 'package:salati/screen/qibla_screen.dart';
 import 'package:salati/screen/tasbih_screen.dart';
+
+import '../providers/theme_provider.dart';
 
 class NavBarScreen extends StatefulWidget {
   const NavBarScreen({super.key});
@@ -17,27 +21,44 @@ class NavBarScreen extends StatefulWidget {
 class _NavBarScreenState extends State<NavBarScreen> {
   int _selectedIndex = 0;
 
-  Widget _buildTab(
-      {Widget? activeIcon,
-      Widget? inactiveIcon,
-      String? iconlabel,
-      int? index}) {
+  Widget _buildTab({
+    Widget? activeIcon,
+    Widget? inactiveIcon,
+    String? iconlabel,
+    int? index,
+  }) {
+    final themeProvider = Provider.of<ThemeProvider>(context);
+
     return Tab(
       icon: _selectedIndex == index
           ? Container(
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.primary),
-              child: Center(child: activeIcon))
+                borderRadius: BorderRadius.circular(50),
+                color: Theme.of(context).colorScheme.primary,
+              ),
+              child: Center(child: activeIcon),
+            )
           : Container(
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: Theme.of(context).colorScheme.background),
-              child: Center(child: inactiveIcon)),
+                borderRadius: BorderRadius.circular(50),
+                color: Theme.of(context).colorScheme.background,
+              ),
+              child: Center(
+                child: themeProvider.themeData == darkMode
+                    ? ColorFiltered(
+                        colorFilter: const ColorFilter.mode(
+                          Colors.white,
+                          BlendMode.srcIn,
+                        ),
+                        child: inactiveIcon,
+                      )
+                    : inactiveIcon,
+              ),
+            ),
       text: iconlabel,
     );
   }
@@ -123,7 +144,7 @@ class _NavBarScreenState extends State<NavBarScreen> {
                 HomeScreen(tasbihController: tasbihController),
                 QiblaScreen(controller: qiblaController),
                 TasbihScreen(controller: tasbihController),
-                const MoreScreen()
+                const SettingsScreen()
               ],
             ));
       }),
