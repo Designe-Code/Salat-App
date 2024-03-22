@@ -1,25 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:salati/helper/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../helper/theme.dart';
 
 class ThemeProvider with ChangeNotifier {
-  bool _isDarkMode = false;
-  ThemeData _themeData = lightTheme;
+  ThemeProvider() {
+    _loadThemeFromPreferences();
+  }
+
+  bool _isDarkModeEnabled = false;
+  late ThemeData _themeData = lightTheme;
 
   ThemeData get themeData => _themeData;
 
-  set themeData(ThemeData themeData) {
-    _themeData = themeData;
+  void toggleTheme() {
+    _isDarkModeEnabled = !_isDarkModeEnabled;
+    _saveThemeToPreferences();
+    _themeData = _isDarkModeEnabled ? darkMode : lightTheme;
     notifyListeners();
   }
 
-  bool get isDarkMode => _isDarkMode;
+  Future<void> _loadThemeFromPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    _isDarkModeEnabled = prefs.getBool('isDarkModeEnabled') ?? false;
+    _themeData = _isDarkModeEnabled ? darkMode : lightTheme;
+    notifyListeners();
+  }
 
-  void toggleTheme() {
-    _isDarkMode = !_isDarkMode;
-    if (_isDarkMode) {
-      themeData = darkMode;
-    } else {
-      themeData = lightTheme;
-    }
+  Future<void> _saveThemeToPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setBool('isDarkModeEnabled', _isDarkModeEnabled);
   }
 }
