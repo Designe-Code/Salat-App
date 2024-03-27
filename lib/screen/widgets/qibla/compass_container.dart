@@ -6,15 +6,15 @@ class CompassContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Offset distance =  const Offset(-5, 10);
-    double blur = 15.0;
+    Offset distance =  const Offset(-5, 5);
+    double blur = 5.0;
     return Center(
       child: Container(
         width: 300,
         height: 300,
         decoration: ShapeDecoration(
            shape: const OvalBorder(),
-          color: Theme.of(context).colorScheme.background,
+          color: Colors.white,
           shadows: [
               BoxShadow(
               color: Colors.white,

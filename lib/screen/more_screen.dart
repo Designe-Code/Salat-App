@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:salati/helper/functions.dart';
 import 'package:salati/helper/theme.dart';
@@ -15,15 +14,15 @@ class SettingsScreen extends StatelessWidget {
         body: SafeArea(
             child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  children: [
-                   Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Qibla", style: Theme.of(context).textTheme.bodyMedium),
-                ],
-              ),
-               const SizedBox(height: 32),
+                child: Column(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("Qibla",
+                          style: Theme.of(context).textTheme.bodyMedium),
+                    ],
+                  ),
+                  const SizedBox(height: 32),
                   Consumer<ThemeProvider>(
                     builder: (context, themeProvider, child) {
                       return Container(
@@ -69,7 +68,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 12.0),
                   GestureDetector(
-                    onTap: ()=> navigateTo(context, const AboutScreen()),
+                    onTap: () => navigateTo(context, const AboutScreen()),
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
@@ -89,8 +88,8 @@ class SettingsScreen extends StatelessWidget {
                             Text('About Salati',
                                 style: Theme.of(context)
                                     .textTheme
-                                    .displaySmall?.copyWith(fontSize: 16)
-                                   ),
+                                    .displaySmall
+                                    ?.copyWith(fontSize: 16)),
                           ],
                         ),
                       ),

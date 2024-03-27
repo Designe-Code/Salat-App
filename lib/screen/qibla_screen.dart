@@ -85,7 +85,7 @@ class _QiblaScreenState extends State<QiblaScreen> {
                         angle: (direction * (math.pi / 180) * -1),
                         child: const CompassContainer());
                   })
-                : const CompassContainer(),
+                : const Center(child: CompassContainer()),
             ],
           );
         },
