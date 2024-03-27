@@ -7,21 +7,19 @@ class DikrScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Stack(
-        children: [
-        Positioned.fill(
-          child: Image.asset(
-            imageAsset,
-            fit: BoxFit.cover,
-          ),
+    return Stack(
+      children: [
+      Positioned.fill(
+        child: Image.asset(
+          imageAsset,
+          fit: BoxFit.cover,
         ),
-        Positioned.fill(
-          child: Container(
-            color: Colors.black.withOpacity(0.6),
-          ),
+      ),
+      Positioned.fill(
+        child: Container(
+          color: Colors.black.withOpacity(0.6),
         ),
-      ]),
-    );
+      ),
+    ]);
   }
 }
