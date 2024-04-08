@@ -35,6 +35,7 @@ class _DikrControlsState extends State<DikrControls> {
           '${widget.currentIndex + 1} / ${widget.totalAdhkar}',
           style: const TextStyle(color: Colors.white),
         ),
+        const SizedBox(height: 25),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -115,9 +116,18 @@ class _DikrControlsState extends State<DikrControls> {
           ],
         ),
         const SizedBox(height: 25),
-        Text(
-          '${widget.countText}',
-          style: const TextStyle(color: Colors.white),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              ' مرات ',
+              style: TextStyle(color: Colors.white),
+            ),
+            Text(
+              '${widget.countText}',
+              style: const TextStyle(color: Colors.white),
+            ),
+          ],
         ),
       ],
     );

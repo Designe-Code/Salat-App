@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Image(
-                  image: AssetImage(smallLogo),
+                  image: AssetImage(smallLogo),width: 100,
                 ),
               ],
             ),
