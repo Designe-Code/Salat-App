@@ -24,18 +24,19 @@ class _HomePrayerContainerState extends State<HomePrayerContainer> {
         borderRadius: const BorderRadius.all(Radius.circular(20)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: Colors.black.withOpacity(0.2),
             spreadRadius: 0,
             blurRadius: 4,
             offset: const Offset(0, 4),
           ),
         ],
       ),
-      child:
-          Consumer<PrayerProvider>(builder: (context, prayerProvider, child) {
+      child: Consumer<PrayerProvider>(builder: (context, prayerProvider, child) {
         prayerController.setPrayerTime(prayerProvider.timings);
-        return ListView.builder(
-            padding: const EdgeInsets.all(0),
+        return Center(
+          child: ListView.builder(
+            shrinkWrap: true,
+            padding: const EdgeInsets.symmetric(vertical: 8),
             itemCount: prayerController.prayers.length,
             itemBuilder: (context, index) {
               return PrayerListItem(
@@ -56,7 +57,9 @@ class _HomePrayerContainerState extends State<HomePrayerContainer> {
                   });
                 },
               );
-            });
+            },
+          ),
+        );
       }),
     );
   }

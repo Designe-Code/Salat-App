@@ -6,6 +6,7 @@ import 'package:salati/helper/functions.dart';
 import 'package:salati/providers/prayer_provider.dart';
 // import 'package:salati/providers/theme_provider.dart';
 import 'package:salati/screen/adkar_screen.dart';
+import 'package:salati/screen/mosque_map_screen.dart';
 import 'package:salati/screen/quran_screen.dart';
 import 'package:salati/screen/tasbih_screen.dart';
 import 'package:salati/screen/widgets/home/widgets/custom_icon_button.dart';
@@ -24,93 +25,105 @@ class HomeNavBarContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
-      width: MediaQuery.of(context).size.width * 0.92,
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.background,
-        borderRadius: const BorderRadius.all(Radius.circular(20)),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            spreadRadius: 0,
-            blurRadius: 4,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.65,
-            child: Consumer<PrayerProvider>(
-              builder: (context, prayerProvider, child) {
-                return Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    NextAdan(
-                      nextAdan: prayerController.prayers[prayerProvider.activePrayerIndex].adan ?? '',
-                      time: prayerController.prayers[prayerProvider.activePrayerIndex].time ?? ''
-                    ),
-                    CustomLocation(location: city)
-                  ],
-                );
-              },
-            )
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.65,
-            child: const Divider(thickness: 0.8)
-          ),
-          const SizedBox(height: 5),
-          SizedBox(
-            width: MediaQuery.of(context).size.width * 0.65,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                CustomIconButton(
-                  heroTag: 'mosque_button',
-                  icon: mosque,
-                  iconlabel: 'Mosque',
-                  onPressed: () {}
-                ),
-                CustomIconButton(
-                  heroTag: 'quran_button',
-                  icon: quran,
-                  iconlabel: 'Quran',
-                  onPressed: () {
-                    navigateTo(context, const QuranScreen());
-                  }
-                ),
-                CustomIconButton(
-                  heroTag: 'adkar_button',
-                  icon: adkar,
-                  iconlabel: 'Adkar',
-                  onPressed: () {
-                    // Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
-                     Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => AdkarScreen()),
-                    );
-                  }
-                ),
-                CustomIconButton(
-                  heroTag: 'tasbih_button',
-                  icon: tasbih,
-                  iconlabel: 'Tasbih',
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => TasbihScreen(controller: tasbihController)),
-                    );
-                  }
-                ),
-              ],
+    return Container(
+        width: MediaQuery.of(context).size.width * 0.92,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.background,
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              spreadRadius: 0,
+              blurRadius: 4,
+              offset: const Offset(0, 4),
             ),
-          )
-        ],
-      )
-    );
+          ],
+        ),
+        child: Column(
+          children: [
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.65,
+                child: Consumer<PrayerProvider>(
+                  builder: (context, prayerProvider, child) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        NextAdan(
+                            nextAdan: prayerController
+                                    .prayers[prayerProvider.activePrayerIndex]
+                                    .adan ??
+                                '',
+                            time: prayerController
+                                    .prayers[prayerProvider.activePrayerIndex]
+                                    .time ??
+                                ''),
+                        InkWell(
+                            onTap: () {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Refreshing location...'),
+                                    duration: Duration(seconds: 1)),
+                              );
+                              prayerProvider.setTimings();
+                            },
+                            child: CustomLocation(location: city))
+                      ],
+                    );
+                  },
+                )),
+            const SizedBox(height: 8),
+            SizedBox(
+                width: MediaQuery.of(context).size.width * 0.65,
+                child: const Divider(thickness: 0.8)),
+            const SizedBox(height: 5),
+            SizedBox(
+              width: MediaQuery.of(context).size.width * 0.65,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  CustomIconButton(
+                      heroTag: 'mosque_button',
+                      icon: mosque,
+                      iconlabel: 'Mosque',
+                      onPressed: () {
+                        navigateTo(context, const MosqueMapScreen());
+                      }),
+                  CustomIconButton(
+                      heroTag: 'quran_button',
+                      icon: quran,
+                      iconlabel: 'Quran',
+                      onPressed: () {
+                        navigateTo(context, const QuranScreen());
+                      }),
+                  CustomIconButton(
+                      heroTag: 'adkar_button',
+                      icon: adkar,
+                      iconlabel: 'Adkar',
+                      onPressed: () {
+                        // Provider.of<ThemeProvider>(context, listen: false).toggleTheme();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => AdkarScreen()),
+                        );
+                      }),
+                  CustomIconButton(
+                      heroTag: 'tasbih_button',
+                      icon: tasbih,
+                      iconlabel: 'Tasbih',
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  TasbihScreen(controller: tasbihController)),
+                        );
+                      }),
+                ],
+              ),
+            )
+          ],
+        ));
   }
 }

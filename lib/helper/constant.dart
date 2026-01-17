@@ -6,6 +6,7 @@ const String appName = 'Salati';
 
 //api
 const String prayerByCityApiUrl = 'http://api.aladhan.com/v1/timingsByCity';
+const String prayerByLocationApiUrl = 'http://api.aladhan.com/v1/timings';
 const String qiblaApiUrl = 'http://api.aladhan.com/v1/qibla';
 
 //images
@@ -49,11 +50,10 @@ const String eveningdikr = 'assets/images/eveningdikr.jpg';
 const String eveninghigh = 'assets/images/eveningdikrhigh.jpg';
 const String nightdikr = 'assets/images/nightdikr.jpg';
 const String fantasy = 'assets/images/fantasy.jpg';
-const String qiblaAccuracy = 'assets/images/qibla-accuracy.png'; 
+const String qiblaAccuracy = 'assets/images/qibla-accuracy.png';
 const String traduction = 'assets/images/traduction.png';
 const String bookMark = 'assets/images/book-mark.png';
 const String bookMarkInactive = 'assets/images/book-mark-inactive.png';
-
 
 // quran images
 String quranImagePage(index) => 'assets/quran-images/$index.png';
@@ -62,4 +62,3 @@ String quranImagePage(index) => 'assets/quran-images/$index.png';
 PrayerController prayerController = PrayerController();
 QiblaController qiblaController = QiblaController();
 QuranController quranController = QuranController();
-

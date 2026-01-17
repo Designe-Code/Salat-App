@@ -23,11 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
   late Future<Timings>? futurePrayerTiming;
 
   @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final prayerProvider = context.watch<PrayerProvider>();
-    prayerProvider.setTimings();
-    prayerProvider.setActivePrayerIndex();
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      Provider.of<PrayerProvider>(context, listen: false).setTimings();
+    });
   }
 
   @override
@@ -36,44 +36,44 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Container(
           decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(headerBackground),
-              alignment: Alignment.topCenter,
-              fit: BoxFit.fitWidth
-            )
-          ),
+              image: DecorationImage(
+                  image: AssetImage(headerBackground),
+                  alignment: Alignment.topCenter,
+                  fit: BoxFit.fitWidth)),
         ),
         Positioned(
-          top: MediaQuery.of(context).size.height * 0.065,
-          child: SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image(
-                  image: AssetImage(smallLogo),width: 100,
-                ),
-              ],
-            ),
-          )
-        ),
+            top: MediaQuery.of(context).size.height * 0.065,
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image(
+                    image: AssetImage(smallLogo),
+                    width: 100,
+                  ),
+                ],
+              ),
+            )),
         Positioned(
           top: MediaQuery.of(context).size.height * 0.17,
           child: SizedBox(
             width: MediaQuery.of(context).size.width,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                HomeNavBarContainer(
-                  tasbihController: widget.tasbihController,
-                  city: 'Ouarzazate'
-                ),
-                const SizedBox(height: 10),
-                HomeTimeContainer(),
-                const SizedBox(height: 10),
-                HomePrayerContainer()
-              ],
-            ),
+            child: Consumer<PrayerProvider>(
+                builder: (context, prayerProvider, child) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  HomeNavBarContainer(
+                      tasbihController: widget.tasbihController,
+                      city: prayerProvider.city),
+                  const SizedBox(height: 10),
+                  HomeTimeContainer(),
+                  const SizedBox(height: 10),
+                  HomePrayerContainer()
+                ],
+              );
+            }),
           ),
         )
       ],
