@@ -40,9 +40,13 @@ dependencies:
   quran: ^1.2.3
   flutter_compass: ^0.8.0
   percent_indicator: ^4.2.3
-  carousel_slider: ^4.2.1
+  carousel_slider: ^5.0.0
   logger: ^2.1.0
   flutter_launcher_icons: ^0.13.1
+  geocoding: ^4.0.0
+  flutter_map: ^6.1.0
+  latlong2: ^0.9.1
+  url_launcher: ^6.2.5
 
 
 dev_dependencies:

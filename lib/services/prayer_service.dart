@@ -12,13 +12,33 @@ class PrayerService {
     return formattedDate;
   }
 
-  static Future<Timings> getPrayerTimings({required String city, required String country}) async {
-    final response = await http.get(Uri.parse('$prayerByCityApiUrl/${_getCurrentDate()}?city=$city&country=$country&method=8'));
+  static Future<Timings> getPrayerTimings(
+      {required String city, required String country}) async {
+    final response = await http.get(Uri.parse(
+        '$prayerByCityApiUrl/${_getCurrentDate()}?city=$city&country=$country&method=8'));
 
     if (response.statusCode == 200) {
-      return PrayerData.fromJson(jsonDecode(response.body) as Map<String, dynamic>).data.timings;
+      return PrayerData.fromJson(
+              jsonDecode(response.body) as Map<String, dynamic>)
+          .data
+          .timings;
     } else {
       throw Exception('Failed to load Pryer timings');
+    }
+  }
+
+  static Future<Timings> getPrayerTimingsByLocation(
+      {required double latitude, required double longitude}) async {
+    final response = await http.get(Uri.parse(
+        '$prayerByLocationApiUrl/${_getCurrentDate()}?latitude=$latitude&longitude=$longitude&method=8'));
+
+    if (response.statusCode == 200) {
+      return PrayerData.fromJson(
+              jsonDecode(response.body) as Map<String, dynamic>)
+          .data
+          .timings;
+    } else {
+      throw Exception('Failed to load Prayer timings');
     }
   }
 }
